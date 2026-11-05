@@ -1,0 +1,1696 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>انگلیسی‌فا | یادگیری انگلیسی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:oklch(75% .21 135);--deep:oklch(58% .19 135);--ink:oklch(27% .04 250);--muted:oklch(55% .03 250);--line:oklch(91% .02 250);--paper:oklch(99% .008 100);--blue:oklch(70% .16 235);--red:oklch(62% .22 25);font-family:Vazirmatn,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.en{direction:ltr;text-align:left}
+.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{font-weight:800;color:var(--deep);font-size:20px}
+.stats{display:flex;gap:8px}
+.pill{border:1px solid var(--line);border-radius:14px;padding:5px 10px;font-weight:700;white-space:nowrap;font-size:14px;background:#fff}
+.container{width:min(760px,100%);margin:auto;padding:24px 18px 130px}
+.screen{display:none}
+.screen.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(24px,6vw,34px);margin:8px 0}
+.sub{color:var(--muted);margin:4px 0 22px;line-height:1.7}
+.unit{margin:22px 0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff}
+.unitHead{background:linear-gradient(110deg,var(--deep),var(--green));color:#fff;padding:18px 20px}
+.unitHead h2{margin:0;font-size:20px}
+.unitHead p{margin:4px 0 10px;opacity:.92}
+.bar{height:8px;background:#fff6;border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:#fff;border-radius:99px}
+.lesson{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line)}
+.lesson.lock{opacity:.55}
+.lessonIcon{width:42px;height:42px;border-radius:14px;background:oklch(95% .07 135);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.lessonInfo{flex:1;min-width:0}
+.lessonInfo b{display:block}
+.lessonInfo small{color:var(--muted)}
+.btn{border:0;border-radius:14px;padding:11px 18px;font-weight:800;background:var(--green);box-shadow:0 4px 0 var(--deep);transition:.15s}
+.btn:active:not(:disabled){transform:translateY(2px);box-shadow:0 2px 0 var(--deep)}
+.btn.secondary{background:#fff;border:1px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:0 4px 0 var(--line)}
+.lesson .btn{padding:8px 13px;font-size:14px}
+.center{text-align:center}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;margin:18px 0}
+.hero{font-size:64px;margin:10px}
+.row{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap}
+.progress{height:12px;background:var(--line);border-radius:99px;overflow:hidden;flex:1}
+.progress>i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.quizTop{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.iconBtn{border:0;background:transparent;font-size:28px;padding:4px}
+.qtype{color:var(--muted);font-size:14px}
+.prompt{font-size:clamp(21px,5.5vw,28px);font-weight:800;margin:10px 0 18px;line-height:1.6}
+.options{display:grid;gap:12px}
+.choice{width:100%;text-align:right;padding:15px 16px;border:2px solid var(--line);border-radius:16px;background:#fff;font-size:17px;font-weight:600;box-shadow:0 2px 0 var(--line)}
+.choice.en{text-align:left}
+.choice.selected,.pair.selected{border-color:var(--blue);background:oklch(96% .035 235)}
+.good,.pair.matched{border-color:var(--deep)!important;background:oklch(93% .09 135)!important}
+.bad{border-color:var(--red)!important;background:oklch(95% .06 25)!important;animation:shake .35s}
+.wordSlots,.wordPool{direction:ltr;display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.wordSlots{min-height:64px;border-bottom:2px solid var(--line);padding:8px 2px 16px;margin-bottom:20px}
+.chip{border:2px solid var(--line);border-radius:12px;background:#fff;padding:8px 12px;font-weight:700;box-shadow:0 3px 0 var(--line);font-size:16px}
+.chip.used{visibility:hidden}
+.matchWrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.matchCol{display:flex;flex-direction:column;gap:10px}
+.pair{border:2px solid var(--line);border-radius:14px;background:#fff;padding:12px 8px;min-height:54px;font-weight:700;font-size:15px;box-shadow:0 2px 0 var(--line)}
+.pair.en{text-align:center}
+.pair:disabled{cursor:default}
+.textIn{width:100%;padding:14px;font:inherit;font-size:18px;border:2px solid var(--line);border-radius:14px;direction:ltr}
+.textIn:focus{outline:none;border-color:var(--blue)}
+.feedback{display:none;position:fixed;z-index:8;inset:auto 0 0;background:#fff;border-top:2px solid var(--line);padding:16px max(18px,calc((100vw - 760px)/2 + 18px));align-items:center;justify-content:space-between;gap:14px}
+.feedback.show{display:flex;animation:fade .25s ease}
+.feedback.correct{background:oklch(96% .07 135);border-color:var(--deep)}
+.feedback.wrong{background:oklch(97% .05 25);border-color:var(--red)}
+.fbText{font-weight:800;font-size:17px}
+.fbAns{display:block;margin-top:3px;font-size:14px;font-weight:600}
+.toast{position:fixed;z-index:20;top:76px;left:50%;transform:translate(-50%,-12px);opacity:0;background:var(--ink);color:#fff;padding:11px 18px;border-radius:14px;transition:.25s;pointer-events:none;font-size:14px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.wordGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0;text-align:right}
+.wordCard{background:oklch(97% .015 250);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.wordCard span{color:var(--muted);font-size:14px}
+.resultStat{display:flex;justify-content:space-around;gap:10px;margin:22px 0;flex-wrap:wrap}
+.resultStat div{background:oklch(97% .015 250);border-radius:16px;padding:15px;min-width:100px}
+.resultStat b{display:block;font-size:24px}
+@keyframes shake{25%{transform:translateX(7px)}50%{transform:translateX(-7px)}75%{transform:translateX(4px)}}
+@media(max-width:480px){.wordGrid{grid-template-columns:1fr}.brand{font-size:17px}.pill{padding:5px 7px;font-size:13px}}
+/* ── طراحی حرفه‌ای ── */
+:root{--green:oklch(68% .15 150);--deep:oklch(52% .14 150);--ink:oklch(24% .02 260);--muted:oklch(52% .02 260);--line:oklch(92% .008 260);--paper:oklch(98.5% .003 260);--blue:oklch(58% .14 255);--red:oklch(55% .18 25);--soft:oklch(97% .006 260);--r:14px}
+body{background:var(--paper);-webkit-font-smoothing:antialiased}
+.top{background:oklch(100% 0 0 / .85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:14px 20px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.brand{font-weight:800;color:var(--ink);font-size:18px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.brand::before{content:'';width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px oklch(92% .06 150)}
+.pill{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:600;font-size:13px;background:#fff;color:var(--ink);font-variant-numeric:tabular-nums}
+.container{padding-top:32px}
+h1{font-weight:800;letter-spacing:-.02em;color:var(--ink);margin:6px 0 4px}
+.sub{color:var(--muted);font-size:15px;line-height:1.8;margin:6px 0 26px}
+.unit{margin:18px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.unitHead{background:var(--soft);color:var(--ink);padding:20px 22px;border-bottom:1px solid var(--line)}
+.unitHead h2{font-size:17px;font-weight:800}
+.unitHead p{color:var(--muted);font-size:14px;line-height:1.7;margin:4px 0 10px;opacity:1}
+.unitHead small{color:var(--muted);font-size:12px}
+.bar{background:var(--line)}
+.bar>i{background:var(--green)}
+.lesson{padding:14px 20px;gap:14px;transition:background .15s}
+.lesson:hover{background:var(--soft)}
+.lesson.lock{opacity:.5}
+.lessonIcon{width:40px;height:40px;border-radius:12px;background:var(--soft);border:1px solid var(--line);font-size:18px}
+.lessonInfo b{font-size:15px;font-weight:700}
+.lessonInfo small{font-size:13px}
+.btn{border-radius:var(--r);padding:11px 20px;font-weight:700;font-size:15px;background:var(--ink);color:#fff;box-shadow:none;border:1px solid var(--ink);transition:background .15s,transform .05s}
+.btn:hover:not(:disabled){background:oklch(32% .02 260)}
+.btn:active:not(:disabled){transform:scale(.98);box-shadow:none}
+.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.secondary:hover:not(:disabled){background:var(--soft)}
+.btn:disabled{opacity:.4;box-shadow:none;background:var(--ink)}
+.lesson .btn{padding:7px 14px;font-size:13px;border-radius:10px}
+.panel{border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.hero{font-size:52px;margin:6px}
+.progress{height:8px;background:var(--line)}
+.progress>i{background:var(--green);border-radius:99px}
+.quizTop{margin-bottom:28px}
+.iconBtn{color:var(--muted);font-size:24px;line-height:1}
+.qtype{text-transform:none;font-size:13px;font-weight:600;letter-spacing:0;color:var(--muted)}
+.prompt{font-weight:800;letter-spacing:-.01em;margin:8px 0 22px}
+.choice{border:1px solid var(--line);border-radius:var(--r);padding:15px 18px;font-size:16px;font-weight:600;box-shadow:none;background:#fff;transition:border-color .12s,background .12s}
+.choice:hover:not(:disabled){border-color:oklch(80% .02 260);background:var(--soft)}
+.choice.selected,.pair.selected{border-color:var(--ink);background:var(--soft);box-shadow:inset 0 0 0 1px var(--ink)}
+.good,.pair.matched{border-color:var(--deep)!important;background:oklch(96% .04 150)!important;box-shadow:inset 0 0 0 1px var(--deep)}
+.bad{border-color:var(--red)!important;background:oklch(97% .025 25)!important;box-shadow:inset 0 0 0 1px var(--red)}
+.wordSlots{border-bottom:1px solid var(--line);padding:10px 2px 14px}
+.chip{border:1px solid var(--line);border-radius:10px;box-shadow:none;background:#fff;font-weight:600;font-size:15px;padding:7px 12px}
+.pair{border:1px solid var(--line);border-radius:12px;box-shadow:none;font-weight:600;font-size:14px}
+.pair:not(:disabled):hover{background:var(--soft)}
+.textIn{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;font-size:17px}
+.textIn:focus{border-color:var(--ink);box-shadow:0 0 0 3px oklch(90% .01 260)}
+.feedback{border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(15,23,42,.06);padding:18px max(20px,calc((100vw - 760px)/2 + 20px))}
+.feedback.correct{background:oklch(97% .03 150);border-color:oklch(85% .06 150)}
+.feedback.wrong{background:oklch(97% .02 25);border-color:oklch(88% .05 25)}
+.fbText{font-size:16px}
+.toast{background:var(--ink);border-radius:var(--r);font-size:13px;box-shadow:0 8px 24px rgba(15,23,42,.18)}
+.wordCard{background:var(--soft);border:1px solid var(--line);border-radius:12px}
+.wordCard span{font-size:13px}
+.resultStat div{background:var(--soft);border:1px solid var(--line);border-radius:14px}
+.resultStat b{font-weight:800;font-size:22px;margin-top:4px}
+.passage{background:var(--soft);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin:0 0 20px;line-height:1.9;font-size:16px;direction:ltr;text-align:left;color:var(--ink)}
+.screen.active{animation:fade .25s ease}
+/* ── استایل نهایی: الهام از دولینگو ── */
+:root{--green:#58cc02;--deep:#58a700;--ink:#3c3c3c;--muted:#777;--line:#e5e5e5;--paper:#fff;--blue:#1cb0f6;--red:#ea2b2b;--soft:#f7f7f7;--r:16px;--gold:#ffc800;--orange:#ff9600;--lime:#d7ffb8;--sky:#ddf4ff;--sky-b:#84d8ff}
+body{background:#fff;font-size:17px}
+h1{font-size:clamp(26px,7vw,36px);font-weight:800;color:var(--ink);letter-spacing:0}
+.top{background:#fff;backdrop-filter:none;border-bottom:2px solid var(--line);box-shadow:none;padding:12px 20px}
+.brand{color:var(--green);font-size:24px;font-weight:800;gap:0}
+.brand::before{display:none}
+.stats{gap:6px}
+.pill{border:2px solid var(--line);border-radius:14px;padding:6px 12px;font-size:16px;font-weight:800;color:var(--ink);background:#fff}
+.pill:nth-child(1){color:#e6a600;border-color:#ffe38a}
+.pill:nth-child(2){color:var(--red);border-color:#ffc2c2}
+.pill:nth-child(3){color:var(--orange);border-color:#ffd9a0}
+.container{padding-top:28px;max-width:720px}
+.sub{color:var(--muted);font-size:17px;line-height:1.8;margin-bottom:24px;font-weight:600}
+.unit{border:2px solid var(--line);border-radius:20px;box-shadow:0 4px 0 var(--line);margin:26px 0 30px;background:#fff}
+.unitHead{background:var(--green);color:#fff;border:0;padding:20px 22px;border-radius:0}
+.unitHead h2{font-size:20px;font-weight:800;color:#fff}
+.unitHead p{color:#fff;opacity:.95;font-size:15px;font-weight:600}
+.unitHead small{color:#fff;opacity:.9}
+.bar{background:#46a302;height:12px}
+.bar>i{background:#fff}
+.lesson{padding:16px 20px;gap:16px;border-top:2px solid var(--line)}
+.lesson:hover{background:var(--soft)}
+.lessonIcon{width:56px;height:56px;border-radius:50%;background:var(--gold);border:0;box-shadow:0 4px 0 #e0a800;font-size:26px}
+.lesson.lock .lessonIcon{background:#e5e5e5;box-shadow:0 4px 0 #cfcfcf;filter:grayscale(1)}
+.lessonInfo b{font-size:17px;font-weight:800;color:var(--ink)}
+.lessonInfo small{font-size:14px;font-weight:600;color:var(--muted)}
+.lesson .btn{font-size:14px;padding:9px 16px}
+.btn{background:var(--green);color:#fff;border:0;border-radius:16px;padding:14px 26px;font-size:17px;font-weight:800;text-transform:none;box-shadow:0 4px 0 var(--deep);transition:transform .08s,box-shadow .08s,filter .15s;letter-spacing:0}
+.btn:hover:not(:disabled){filter:brightness(1.04);background:var(--green)}
+.btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 0 0 var(--deep)}
+.btn.secondary{background:#fff;color:var(--blue);border:2px solid var(--line);box-shadow:0 4px 0 var(--line)}
+.btn.secondary:hover:not(:disabled){background:var(--soft);filter:none}
+.btn.secondary:active:not(:disabled){box-shadow:0 0 0 var(--line)}
+.btn:disabled{background:#e5e5e5;color:#afafaf;box-shadow:0 4px 0 #cfcfcf;opacity:1}
+.panel{border:2px solid var(--line);border-radius:24px;box-shadow:0 4px 0 var(--line);padding:30px}
+.hero{font-size:84px;margin:8px;animation:bounce 1.2s ease-in-out infinite}
+.progress{height:16px;background:var(--line);border-radius:99px}
+.progress>i{background:var(--green);border-radius:99px;box-shadow:inset 0 -3px 0 var(--deep);transition:width .5s cubic-bezier(.3,1.4,.6,1)}
+.quizTop{gap:16px}
+.iconBtn{color:#afafaf;font-size:30px;font-weight:800}
+.qtype{font-size:15px;font-weight:800;color:var(--muted)}
+.prompt{font-size:clamp(24px,6.5vw,32px);font-weight:800;color:var(--ink);line-height:1.5;margin:10px 0 26px}
+.options{gap:12px}
+.choice{border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:16px 18px;font-size:18px;font-weight:700;color:var(--ink);background:#fff;box-shadow:none;transition:transform .08s,background .12s,border-color .12s}
+.choice:hover:not(:disabled){background:var(--soft);border-color:var(--line)}
+.choice:active:not(:disabled){transform:translateY(2px)}
+.choice.selected,.pair.selected{border-color:var(--sky-b);background:var(--sky);color:#1899d6;box-shadow:none}
+.good,.pair.matched{border-color:#89e219!important;background:var(--lime)!important;color:var(--deep);box-shadow:none!important;animation:bounce .4s}
+.bad{border-color:#ffb3b3!important;background:#ffdfe0!important;color:var(--red);box-shadow:none!important}
+.wordSlots{border-bottom:2px solid var(--line);padding:12px 2px 16px;min-height:72px}
+.chip{border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;background:#fff;font-size:17px;font-weight:700;color:var(--ink);box-shadow:none;padding:9px 14px}
+.matchWrap{gap:14px}
+.pair{border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;font-size:16px;font-weight:700;color:var(--ink);box-shadow:none;padding:14px 10px;min-height:60px}
+.pair:not(:disabled):hover{background:var(--soft)}
+.textIn{border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;font-size:19px;font-weight:700;padding:15px 18px}
+.textIn:focus{border-color:var(--sky-b);box-shadow:none}
+.feedback{border-top:2px solid var(--line);box-shadow:none;padding:20px max(20px,calc((100vw - 720px)/2 + 20px))}
+.feedback.correct{background:var(--lime);border-color:#b7e88c}
+.feedback.wrong{background:#ffdfe0;border-color:#ffb3b3}
+.fbText{font-size:20px;font-weight:800}
+.feedback.correct .fbText{color:var(--deep)}
+.feedback.wrong .fbText{color:var(--red)}
+.fbAns{font-size:16px;font-weight:700;color:var(--ink)}
+.feedback .btn{min-width:120px}
+.feedback.correct .btn{background:var(--deep);box-shadow:0 4px 0 #458500}
+.feedback.wrong .btn{background:var(--red);box-shadow:0 4px 0 #b71d1d}
+.toast{background:var(--ink);border-radius:16px;font-size:15px;font-weight:800;top:82px}
+.wordGrid{gap:12px}
+.wordCard{background:#fff;border:2px solid var(--line);border-bottom-width:4px;border-radius:16px;padding:12px 14px}
+.wordCard b{font-size:17px}
+.wordCard span{font-size:14px;font-weight:600}
+.resultStat div{background:#fff;border:2px solid var(--line);border-bottom-width:4px;border-radius:18px}
+.resultStat b{font-size:26px;font-weight:800;color:var(--green)}
+.passage{background:#fff;border:2px solid var(--line);border-bottom-width:4px;border-radius:18px;padding:20px;font-size:18px;line-height:1.9;font-weight:600}
+.screen.active{animation:pop .35s cubic-bezier(.3,1.4,.6,1)}
+@keyframes pop{from{opacity:0;transform:scale(.97) translateY(10px)}to{opacity:1;transform:none}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bad{animation:shake .4s}
+
+/* ── تم تیره و مسیر دولینگویی ── */
+:root{--bg:#131f24;--card:#1f2c34;--edge:#37464f;--txt:#fff;--mut:#afafaf;--g:#58cc02;--gd:#46a302}
+body{background:var(--bg);color:var(--txt)}
+.top{background:var(--bg);border-bottom:2px solid var(--edge);padding:10px 16px}
+.brand{color:var(--g);font-size:22px}
+.pill{background:transparent;border:0;color:#fff;font-size:17px;padding:4px 8px}
+.pill:nth-child(1){color:#ffc800}.pill:nth-child(2){color:#ff4b4b}.pill:nth-child(3){color:#ff9600}
+.container{max-width:520px;padding:18px 16px 40px}
+h1{color:#fff}
+.sub{color:var(--mut)}
+#home>h1,#home>.sub{display:none}
+.btn{background:var(--g);color:#fff;box-shadow:0 4px 0 var(--gd)}
+.btn.secondary{background:var(--card);color:#1cb0f6;border:2px solid var(--edge);box-shadow:0 4px 0 var(--edge)}
+.btn:disabled{background:var(--edge);color:#5b7083;box-shadow:0 4px 0 #222f36}
+.panel{background:var(--card);border-color:var(--edge);box-shadow:0 4px 0 var(--edge)}
+.progress{background:var(--edge)}
+.iconBtn{color:var(--mut)}
+.qtype{color:var(--mut)}
+.prompt{color:#fff}
+.choice{background:var(--card);border-color:var(--edge);color:#fff;box-shadow:none}
+.choice:hover:not(:disabled){background:#26363f}
+.choice.selected,.pair.selected{border-color:#1cb0f6;background:#1b3a4b;color:#84d8ff}
+.good,.pair.matched{background:#1f3a12!important;border-color:var(--g)!important;color:#89e219}
+.bad{background:#4a1d1f!important;border-color:#ea2b2b!important;color:#ff7a7a}
+.wordSlots{border-color:var(--edge)}
+.chip,.pair{background:var(--card);border-color:var(--edge);color:#fff}
+.pair:not(:disabled):hover{background:#26363f}
+.textIn{background:var(--card);border-color:var(--edge);color:#fff}
+.textIn:focus{border-color:#1cb0f6}
+.feedback{color:#3c3c3c}
+.toast{background:#fff;color:#3c3c3c}
+.wordCard{background:var(--card);border-color:var(--edge);color:#fff}
+.wordCard span{color:var(--mut)}
+.resultStat div{background:var(--card);border-color:var(--edge);color:var(--mut)}
+.resultStat b{color:#ffc800}
+.passage{background:var(--card);border-color:var(--edge);color:#fff}
+.unitBanner{border-radius:16px;padding:16px 18px;color:#fff;margin:26px 0 8px;box-shadow:0 5px 0 rgba(0,0,0,.35)}
+.unitBanner small{font-size:13px;font-weight:800;letter-spacing:.04em;opacity:.9}
+.unitBanner h2{margin:4px 0;font-size:20px;font-weight:800}
+.unitBanner p{margin:0;font-size:14px;font-weight:600;opacity:.92;line-height:1.6}
+.unitBanner.purple{background:#ce82ff;box-shadow:0 5px 0 #a568cc}
+.unitBanner.green{background:#58cc02;box-shadow:0 5px 0 #46a302}
+.unitBanner.blue{background:#1cb0f6;box-shadow:0 5px 0 #1899d6}
+.unitBanner.orange{background:#ff9600;box-shadow:0 5px 0 #e08600}
+.path{display:flex;flex-direction:column;align-items:center;gap:18px;padding:18px 0 28px}
+.nodeWrap{display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .3s}
+.node{width:76px;height:68px;border-radius:50%;border:0;background:var(--g);box-shadow:0 8px 0 var(--gd);color:#fff;font-size:28px;font-weight:800;position:relative;transition:transform .08s,box-shadow .08s;padding:0}
+.node:active:not(:disabled){transform:translateY(6px);box-shadow:0 2px 0 var(--gd)}
+.node:disabled{cursor:not-allowed}
+.node.locked{background:var(--edge);box-shadow:0 8px 0 #222f36;color:#5b7083}
+.node.done{background:#ffc800;box-shadow:0 8px 0 #cc9f00;color:#fff}
+.node.cur{animation:pulse 1.6s ease-in-out infinite}
+.nlabel{font-size:12px;font-weight:700;color:var(--mut);max-width:150px;text-align:center;line-height:1.4}
+.bubble{position:absolute;top:-46px;left:50%;transform:translateX(-50%);background:#fff;color:var(--g);font-size:14px;font-weight:800;padding:6px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 3px 0 var(--edge);animation:bob 1.2s ease-in-out infinite}
+.bubble::after{content:'';position:absolute;bottom:-7px;left:50%;margin-left:-7px;border:7px solid transparent;border-top-color:#fff;border-bottom:0}
+.mistake{background:#ce82ff;border-radius:16px;padding:16px 18px;color:#fff;margin:24px 0 8px;box-shadow:0 5px 0 #a568cc;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mistake h2{margin:2px 0;font-size:18px}.mistake p{margin:0;font-size:14px;opacity:.92;font-weight:600}
+.mistake .btn{background:#fff;color:#a568cc;box-shadow:0 4px 0 #d9c2e8;white-space:nowrap}
+.mistake.off{background:var(--edge);box-shadow:0 5px 0 #222f36;opacity:.7}
+.mistake.off .btn{background:var(--edge);color:#5b7083;box-shadow:none}
+
+
+
+
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-5px)}}
+
+/* ── بازطراحی: نیمه‌شب آبی، کارت‌های نرم، شش‌ضلعی‌ها ── */
+:root{--bg:#0c1a2e;--card:#142a43;--card2:#183350;--edge:#24425f;--txt:#f1f6fb;--mut:#8ea5bd;--g:#34c38f;--gd:#27a074;--gold:#f5b73d;--ac:#34c38f}
+html{background:#0c1a2e}
+body{background:radial-gradient(120% 60% at 50% -10%,#16365a 0%,#0c1a2e 55%) fixed,#0c1a2e;color:var(--txt);font-size:16px;line-height:1.6;min-height:100vh}
+.top{background:rgba(12,26,46,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--edge);padding:10px 16px}
+.brand{font-size:17px;color:var(--txt)}
+.brand::before{display:none}
+.stats{gap:6px}
+.pill{background:var(--card);border:1px solid var(--edge);border-radius:999px;padding:4px 11px;font-size:14px;font-weight:700}
+.container{max-width:520px;padding:20px 16px 48px}
+.btn{background:linear-gradient(180deg,#3fd0997a,#34c38f) ,var(--g);background:var(--g);color:#06241a;border-radius:16px;font-weight:800;box-shadow:0 8px 22px rgba(52,195,143,.22)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn.secondary{background:var(--card);color:#7cc4ff;border:1px solid var(--edge);box-shadow:none}
+.btn:disabled{background:#1a2f48;color:#58708a;box-shadow:none}
+.panel,.passage,.wordCard,.resultStat div{background:var(--card);border:1px solid var(--edge);border-radius:18px;box-shadow:none;color:var(--txt)}
+.wordCard span,.resultStat div{color:var(--mut)}
+.resultStat b{color:var(--g)}
+.progress{background:#1a3350;height:12px;border-radius:99px}
+.progress i{background:linear-gradient(90deg,#34c38f,#5ee0b0);border-radius:99px}
+.choice,.chip,.pair,.textIn{background:var(--card);border:1.5px solid var(--edge);border-radius:16px;color:var(--txt);box-shadow:none}
+.choice:hover:not(:disabled),.pair:not(:disabled):hover{background:var(--card2)}
+.choice.selected,.pair.selected{background:#16405e;border-color:#5db7f5;color:#bfe3ff}
+.good,.pair.matched{background:#10392e!important;border-color:var(--g)!important;color:#7ff0c3!important}
+.bad{background:#3d1b27!important;border-color:#ef6b7e!important;color:#ffb3bf!important}
+.textIn:focus{border-color:#5db7f5}
+.wordSlots{border-color:var(--edge)}
+.feedback{background:var(--card);color:var(--txt);border-top:1px solid var(--edge)}
+.feedback.correct{background:#0f3a2d;border-color:#1f7a5c}
+.feedback.wrong{background:#3b1a26;border-color:#8a3447}
+.feedback.correct .fbText{color:#7ff0c3}
+.feedback.wrong .fbText{color:#ff9aab}
+.fbAns{color:var(--txt)}
+.feedback.correct .btn{background:var(--g);box-shadow:none;color:#06241a}
+.feedback.wrong .btn{background:#ef6b7e;box-shadow:none;color:#fff}
+.toast{background:var(--card2);color:var(--txt);border:1px solid var(--edge)}
+
+/* خانه */
+.greet{margin:4px 2px 14px}
+.greet h1{margin:0;font-size:26px;font-weight:800;color:var(--txt)}
+.greet p{margin:4px 0 0;color:var(--mut);font-size:14px}
+.dcard{background:var(--card);border:1px solid var(--edge);border-radius:20px;padding:16px}
+.week{display:flex;justify-content:space-between;gap:4px;margin-bottom:14px}
+.day{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:var(--mut);flex:1}
+.hex{width:42px;height:46px;display:grid;place-items:center;font-weight:800;font-size:15px;color:var(--mut);background:var(--edge);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);position:relative}
+.hex::before{content:'';position:absolute;inset:2.5px;background:#102440;clip-path:inherit}
+.hex>*{position:relative}
+.hex.on{background:var(--g);color:#06241a}
+.hex.on::before{background:var(--g)}
+.hex.today:not(.on){background:#5db7f5;color:#bfe3ff}
+.day.today{color:var(--txt);font-weight:700}
+.streakNote{border:1px solid #1f7a5c;background:linear-gradient(180deg,#0f3a2d,#0e2f2c);border-radius:18px;padding:14px 16px;margin:12px 0}
+.streakNote b{display:block;color:#7ff0c3;font-size:17px}
+.streakNote span{color:var(--mut);font-size:14px}
+.streakNote.todo{border-color:var(--edge);background:var(--card)}
+.streakNote.todo b{color:var(--txt)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px}
+.grid2 .dcard small{color:var(--mut);font-size:13px}
+.grid2 .dcard strong{display:block;font-size:34px;font-weight:800;line-height:1.3;margin-top:4px}
+.grid2 .dcard em{font-style:normal;color:var(--mut);font-size:13px}
+.secH{display:flex;justify-content:space-between;align-items:baseline;margin:22px 2px 12px}
+.secH h3{margin:0;font-size:18px;font-weight:800}
+.secH span{color:var(--mut);font-size:13px}
+.badges{display:flex;gap:6px;justify-content:space-between}
+.bdg{flex:1;text-align:center;font-size:12px;color:var(--txt);font-weight:600;line-height:1.4;min-width:0}
+.bdg .hex{width:62px;height:68px;margin:0 auto 8px;font-size:26px;background:var(--g)}
+.bdg .hex::before{background:#0f4a3b}
+.bdg.lock{color:var(--mut)}
+.bdg.lock .hex{background:#2b4058;filter:grayscale(1);opacity:.85}
+.bdg.lock .hex::before{background:#16283d}
+.pathH{margin:26px 2px 0}
+.pathH h3{margin:0;font-size:18px;font-weight:800}
+
+/* واحدها و مسیر */
+.unitBanner{border-radius:20px;border:1px solid var(--edge);box-shadow:none;margin:22px 0 4px;padding:16px 18px;color:var(--txt);background:linear-gradient(135deg,var(--card2),var(--card));position:relative;overflow:hidden}
+.unitBanner::before{content:'';position:absolute;inset-block:0;inset-inline-start:0;width:5px;background:var(--uc)}
+.unitBanner.purple{--uc:#b08cff;background:linear-gradient(135deg,var(--card2),var(--card));box-shadow:none}
+.unitBanner.green{--uc:#34c38f;background:linear-gradient(135deg,var(--card2),var(--card));box-shadow:none}
+.unitBanner.blue{--uc:#5db7f5;background:linear-gradient(135deg,var(--card2),var(--card));box-shadow:none}
+.unitBanner.orange{--uc:#f5b73d;background:linear-gradient(135deg,var(--card2),var(--card));box-shadow:none}
+.unitBanner small{color:var(--uc);opacity:1}
+.unitBanner p{color:var(--mut);opacity:1}
+.node{width:78px;height:86px;border-radius:0;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:var(--g);box-shadow:none;color:#06241a;font-size:26px;position:relative}
+.node::before{content:'';position:absolute;inset:4px;background:#0f4a3b;clip-path:inherit;z-index:0}
+.node>*{position:relative;z-index:1}
+.node{color:#7ff0c3}
+.node.done{background:var(--gold)}
+.node.done::before{background:#4a3a12}
+.node.done{color:var(--gold)}
+.node.locked{background:#2b4058}
+.node.locked::before{background:#16283d}
+.node.locked{color:#5b7590}
+.node.cur{background:#7ff0c3;filter:drop-shadow(0 0 12px rgba(52,195,143,.55))}
+.node:active:not(:disabled){transform:scale(.95);box-shadow:none}
+.nlabel{color:var(--mut)}
+.bubble{background:var(--g);color:#06241a;box-shadow:none;clip-path:none;top:-40px}
+.bubble::after{border-top-color:var(--g)}
+.mistake{background:var(--card);border:1px solid #5b4a8a;box-shadow:none;border-radius:20px;color:var(--txt);margin:14px 0 0}
+.mistake .btn{background:#b08cff;color:#1b1038;box-shadow:none}
+.mistake.off{background:var(--card);border-color:var(--edge);opacity:.75;box-shadow:none}
+.mistake.off .btn{background:#1a2f48;color:#58708a}
+.profBtn{background:var(--card);border:1px solid var(--edge);border-radius:50%;width:38px;height:38px;font-size:18px;cursor:pointer;color:var(--txt)}
+.btn.danger{background:#ef6b7e;color:#fff;box-shadow:none;width:100%}
+.prow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--edge)}
+.prow:last-child{border:0}
+.node{width:112px;height:124px}
+.node::before{inset:4px}
+.node .nic{display:block;line-height:0;color:#5db7f5;filter:drop-shadow(0 1px 0 rgba(0,0,0,.25))}
+.node.locked .nic{color:#3a5170;opacity:.6}
+.node.done .nic{color:#ffd76a}
+.node .ntxt{display:block;padding:0 16px;font-size:11px;font-weight:700;line-height:1.35;font-family:inherit;color:#e8fff6;word-break:break-word;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.node.done .ntxt{color:#ffe7a8}
+.node.locked .ntxt{color:#6f87a0}
+.bubble{top:-34px}
+
+/* ایکون‌های هدر: شش‌ضلعی هم‌رنگ با سایت */
+.stats .pill,.profBtn{position:relative;isolation:isolate;border:0;border-radius:0;width:60px;height:56px;padding:0;display:grid;place-items:center;background:none;box-shadow:none;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);font-size:15px;color:var(--txt);cursor:default}
+.stats .pill::before,.profBtn::before{content:'';position:absolute;inset:0;background:var(--hc);clip-path:inherit;z-index:-2}
+.stats .pill::after,.profBtn::after{content:'';position:absolute;inset:3px;background:#102440;clip-path:inherit;z-index:-1}
+.stats .pill:nth-child(1){--hc:var(--gold)}
+.stats .pill:nth-child(2){--hc:#ef6b7e}
+.stats .pill:nth-child(3){--hc:#ff9f43}
+.stats .pill b{color:var(--txt);font-weight:800}
+.profBtn{--hc:var(--g);cursor:pointer;font-size:18px}
+.stats{align-items:center}
+.top{align-items:center}
+
+/* هدر: همان اندازه و رنگ شش‌ضلعی‌های روزهای هفته */
+.stats .pill,.profBtn{width:42px;height:46px;font-size:13px}
+.stats .pill::before,.profBtn::before{background:var(--edge)}
+.stats .pill::after,.profBtn::after{background:#102440;inset:2.5px}
+.stats .pill:nth-child(1),.stats .pill:nth-child(2),.stats .pill:nth-child(3),.profBtn{--hc:var(--edge)}
+.stats .pill b{color:var(--mut);font-weight:800;font-size:12px}
+.profBtn{color:var(--mut);font-size:15px}
+
+/* امتیاز، قلب، زنجیره: آبی */
+.stats .pill::before{background:#5db7f5}
+.stats .pill b{color:#5db7f5}
+
+/* آیکون‌های آبی، پایین‌تر از لبه‌ی بالایی شش‌ضلعی */
+.stats .pill{padding-top:9px;align-content:center;justify-items:center;gap:0}
+.stats .pill .hi{display:block;line-height:0;margin-bottom:1px}
+.stats .pill b{font-size:12px}
+
+/* کارت‌های یادگیری واژه */
+.lcard{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 16px;border-radius:22px;background:linear-gradient(160deg,#17324f,#0f2640);border:1px solid #24425f;margin:6px 0 12px}
+.lemo{font-size:72px;line-height:1.1}
+.len{font-size:28px;color:#fff;font-weight:800}
+.lfa{font-size:20px;color:var(--g)}
+.lspk{margin-top:4px;min-width:120px}
+.lprog{display:flex;gap:6px;justify-content:center;margin:6px 0}
+.lprog i{width:22px;height:5px;border-radius:4px;background:#24425f}
+.lprog i.on{background:var(--g)}
+
+/* performance: حذف فیلترها و انیمیشن‌های بی‌پایان روی هشت‌ضلعی‌ها و نوار بالا */
+.node .nic{filter:none}
+.node.cur{animation:none;filter:none;box-shadow:0 0 0 3px rgba(127,240,195,.35)}
+.node .nic,.node{will-change:auto}
+.bubble{animation:none}
+.top{backdrop-filter:none;-webkit-backdrop-filter:none;background:#0c1a2e}
+.screen.active{animation:none}
+.lemo{width:110px;height:110px;margin:0 auto 10px;display:block}.lemo svg{display:block}
+.lemo{color:#5db7f5}
+.uic{display:inline-block;width:26px;height:26px;vertical-align:middle;margin-inline-end:6px;line-height:0}.uic svg{width:100%;height:100%}
+.mistake{display:flex;align-items:center;gap:14px}.mistake>div{flex:1;min-width:0}.mic{flex:0 0 auto;width:52px;height:52px;padding:10px;box-sizing:border-box;border:1.5px solid #5db7f5;border-radius:16px;background:#5db7f514;line-height:0}.mic svg{width:100%;height:100%}
+.speakText{font-size:26px;font-weight:800;text-align:center;color:#5db7f5;margin:18px 0 10px;direction:ltr}
+.speakOut{text-align:center;color:var(--txt);opacity:.85;min-height:24px;margin-bottom:14px}
+.speakRow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* دکمه بررسی همیشه پایین صفحه و بالای کیبورد */
+#quiz{padding-bottom:110px}
+#quiz .row:has(#checkBtn){position:fixed;left:0;right:0;bottom:0;margin:0!important;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--bg,#0a1628);border-top:1px solid var(--line,#1e3450);z-index:20}
+#quiz .row:has(#checkBtn) .btn{width:100%}
+/* پنجره‌ی تأیید سفارشی */
+.cfBg{position:fixed;inset:0;background:rgba(3,8,18,.7);display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;animation:cfIn .15s ease}
+.cfBox{width:100%;max-width:360px;background:var(--card,#132742);border:1px solid var(--edge,#1e3450);border-radius:20px;padding:22px 20px 18px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.cfMsg{margin:0 0 20px;font-size:16px;line-height:1.9;color:var(--txt,#e8f1ff);text-align:right}
+.cfRow{display:flex;gap:10px}
+.cfRow .btn{flex:1;margin:0}
+@keyframes cfIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">انگلیسی‌فا</div>
+  <button class="profBtn" id="profBtn" aria-label="پروفایل">👤</button>
+  <div class="stats">
+    <span class="pill"><i class="hi"><svg viewBox="0 0 24 24" width="14" height="14" fill="#5db7f5"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></i><b id="xp">۰</b></span>
+    <span class="pill"><i class="hi"><svg viewBox="0 0 24 24" width="14" height="14" fill="#5db7f5"><path d="M12 21s-7.5-4.6-9.5-9C1 8.6 3.2 5 6.6 5c2.1 0 3.5 1.2 4.4 2.5C11.9 6.2 13.3 5 15.4 5 18.8 5 21 8.6 21.5 12c-2 4.4-9.5 9-9.5 9z"/></svg></i><b id="heartCount">۵</b></span>
+    <span class="pill"><i class="hi"><svg viewBox="0 0 24 24" width="14" height="14" fill="#5db7f5"><path d="M12 2c1 3.5 5 5.5 5 11a5 5 0 0 1-10 0c0-2.2 1-3.7 2-4.8.2 1.6.9 2.6 2 3C10.6 8.5 11 5 12 2z"/></svg></i><b id="streak">۰</b></span>
+  </div>
+</header>
+<main class="container">
+  <section id="home" class="screen active">
+    <div id="dash"></div>
+    <div id="units"></div>
+  </section>
+  <section id="profile" class="screen">
+    <div class="greet"><h1>پروفایل</h1><p>اطلاعات ذخیره‌شده روی همین دستگاه</p></div>
+    <div id="profStats" class="dcard"></div>
+    <div class="dcard" style="margin-top:12px"><b>پاک کردن اطلاعات</b>
+      <p style="color:var(--mut);font-size:14px;margin:6px 0 12px">امتیاز، درس‌های انجام‌شده، زنجیره، قلب‌ها و اشتباهات برای همیشه پاک می‌شود.</p>
+      <button class="btn danger" id="resetBtn">پاک کردن همه‌ی پیشرفت</button></div>
+    <button class="btn secondary" id="profBack" style="margin-top:12px;width:100%">بازگشت</button>
+  </section>
+  <section id="intro" class="screen">
+    <div class="center panel">
+      <div class="hero" id="introIcon"></div>
+      <h1 id="introTitle"></h1>
+      <p class="sub" id="introDesc"></p>
+      <div class="wordGrid" id="introWords"></div>
+      <div class="row">
+        <button class="btn secondary" onclick="renderHome()">برگشت</button>
+        <button class="btn" onclick="startLesson()">شروع درس</button>
+      </div>
+    </div>
+  </section>
+  <section id="quiz" class="screen">
+    <div class="quizTop">
+      <button class="iconBtn" onclick="confirmExit()" aria-label="خروج از درس">×</button>
+      <div class="progress"><i id="progressFill"></i></div>
+      <span class="pill">❤️ <b id="quizHearts">۵</b></span>
+    </div>
+    <div class="qtype" id="qType"></div>
+    <h1 class="prompt" id="prompt"></h1>
+    <div id="questionArea"></div>
+    <div class="row" style="margin-top:22px"><button class="btn" id="checkBtn" onclick="checkAnswer()" disabled>بررسی</button></div>
+  </section>
+  <section id="result" class="screen">
+    <div class="center panel">
+      <div class="hero" id="resultIcon">🏆</div>
+      <h1 id="resultTitle"></h1>
+      <p class="sub" id="resultSub"></p>
+      <div class="resultStat">
+        <div>⚡ تجربه<b id="earned"></b></div>
+        <div>🎯 دقت<b id="accuracy"></b></div>
+        <div>⏱ زمان<b id="elapsed"></b></div>
+      </div>
+      <div class="row">
+        <button class="btn secondary" onclick="openLesson(CUR.id)">تلاش دوباره</button>
+        <button class="btn" onclick="renderHome()">ادامه مسیر</button>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="feedback" class="feedback" aria-live="polite">
+  <div><div class="fbText" id="fbText"></div><span class="fbAns" id="fbAns"></span></div>
+  <button class="btn" onclick="nextQuestion()">ادامه</button>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script>
+'use strict';
+/* هر درس: t عنوان | v هشت واژه [فارسی, انگلیسی] | s دو جمله [فارسی, انگلیسی] */
+const DATA = [
+{ t:'سلام و آشنایی', d:'سلام، معرفی خود و اعداد پایه', ic:'👋', L:[
+ {t:'سلام و احوال‌پرسی', v:[['سلام','hello'],['صبح بخیر','good morning'],['شب بخیر','good night'],['خداحافظ','goodbye'],['لطفاً','please'],['ممنون','thank you'],['بله','yes'],['نه','no']],
+  s:[['سلام، حالت چطوره؟','Hello, how are you?'],['ممنون، من خوبم.','Thank you, I am fine.']]},
+ {t:'معرفی خود', v:[['اسم من','my name'],['ایران','Iran'],['دانش‌آموز','student'],['معلم','teacher'],['خوشوقتم','nice to meet you'],['زندگی کردن','live'],['اسم','name'],['مهندس','engineer']],
+  s:[['اسم من سارا است.','My name is Sara.'],['من معلم هستم.','I am a teacher.']]},
+ {t:'اعداد ۱ تا ۸', v:[['یک','one'],['دو','two'],['سه','three'],['چهار','four'],['پنج','five'],['شش','six'],['هفت','seven'],['هشت','eight']],
+  s:[['من دو برادر دارم.','I have two brothers.'],['من سه کتاب دارم.','I have three books.']]},
+ {t:'اعداد بزرگ‌تر', v:[['صفر','zero'],['نه','nine'],['ده','ten'],['یازده','eleven'],['دوازده','twelve'],['بیست','twenty'],['پنجاه','fifty'],['صد','hundred']],
+  s:[['من بیست ساله هستم.','I am twenty years old.'],['این ده دلار است.','It is ten dollars.']]},
+ {t:'کلمات پرسشی', v:[['چه','what'],['کجا','where'],['کِی','when'],['چرا','why'],['چه کسی','who'],['چطور','how'],['کدام','which'],['چقدر','how much']],
+  s:[['تو کجا هستی؟','Where are you?'],['این کیست؟','Who is this?']]},
+]},
+{ t:'دنیای اطراف', d:'رنگ‌ها، خانواده، خوراکی و حیوانات', ic:'🌍', L:[
+ {t:'رنگ‌ها', v:[['قرمز','red'],['آبی','blue'],['سبز','green'],['زرد','yellow'],['سیاه','black'],['سفید','white'],['نارنجی','orange'],['صورتی','pink']],
+  s:[['آسمان آبی است.','The sky is blue.'],['برگ‌ها سبز هستند.','The leaves are green.']]},
+ {t:'خانواده', v:[['مادر','mother'],['پدر','father'],['خواهر','sister'],['برادر','brother'],['پسر','son'],['دختر','daughter'],['خانواده','family'],['والدین','parents']],
+  s:[['مادرم معلم است.','My mother is a teacher.'],['خانواده من بزرگ است.','My family is big.']]},
+ {t:'خوراکی‌ها', v:[['سیب','apple'],['نان','bread'],['آب','water'],['شیر','milk'],['برنج','rice'],['پنیر','cheese'],['چای','tea'],['موز','banana']],
+  s:[['من هر روز چای می‌نوشم.','I drink tea every day.'],['من سیب دوست دارم.','I like apples.']]},
+ {t:'حیوانات', v:[['گربه','cat'],['سگ','dog'],['پرنده','bird'],['ماهی','fish'],['اسب','horse'],['گاو','cow'],['شیر (جانور)','lion'],['خرگوش','rabbit']],
+  s:[['گربه روی میز است.','The cat is on the table.'],['من یک سگ دارم.','I have a dog.']]},
+ {t:'بدن', v:[['سر','head'],['دست','hand'],['چشم','eye'],['پا','foot'],['قلب','heart'],['بینی','nose'],['دهان','mouth'],['گوش','ear']],
+  s:[['سرم درد می‌کند.','My head hurts.'],['من دو چشم دارم.','I have two eyes.']]},
+]},
+{ t:'زندگی روزمره', d:'روزها، فصل‌ها، خانه و زمان', ic:'🏠', L:[
+ {t:'روزهای هفته', v:[['دوشنبه','Monday'],['سه‌شنبه','Tuesday'],['چهارشنبه','Wednesday'],['پنجشنبه','Thursday'],['جمعه','Friday'],['شنبه','Saturday'],['یکشنبه','Sunday'],['امروز','today']],
+  s:[['امروز دوشنبه است.','Today is Monday.'],['جمعه تعطیل است.','Friday is a holiday.']]},
+ {t:'ماه‌ها و فصل‌ها', v:[['ژانویه','January'],['فوریه','February'],['مارس','March'],['آوریل','April'],['بهار','spring'],['تابستان','summer'],['پاییز','autumn'],['زمستان','winter']],
+  s:[['تابستان گرم است.','Summer is hot.'],['زمستان سرد است.','Winter is cold.']]},
+ {t:'کارهای روزانه', v:[['بیدار شدن','wake up'],['رفتن','go'],['خوردن','eat'],['دوش گرفتن','take a shower'],['خوابیدن','sleep'],['مسواک زدن','brush'],['خواندن','read'],['درس خواندن','study']],
+  s:[['من ساعت هفت بیدار می‌شوم.','I wake up at seven.'],['من هر روز انگلیسی می‌خوانم.','I study English every day.']]},
+ {t:'خانه', v:[['آشپزخانه','kitchen'],['اتاق خواب','bedroom'],['حمام','bathroom'],['اتاق نشیمن','living room'],['در','door'],['پنجره','window'],['میز','table'],['صندلی','chair']],
+  s:[['کتاب روی میز است.','The book is on the table.'],['پنجره باز است.','The window is open.']]},
+ {t:'ساعت و زمان', v:[['ساعت','hour'],['دقیقه','minute'],['صبح','morning'],['بعدازظهر','afternoon'],['عصر','evening'],['شب','night'],['الان','now'],['دیر','late']],
+  s:[['الان ساعت چند است؟','What time is it now?'],['من عصرها ورزش می‌کنم.','I exercise in the evening.']]},
+]},
+{ t:'خرید و غذا', d:'بازار، رستوران و لباس', ic:'🛍️', L:[
+ {t:'خرید و قیمت', v:[['قیمت','price'],['پول','money'],['ارزان','cheap'],['گران','expensive'],['کیف','bag'],['فروشگاه','shop'],['بازار','market'],['پول خرد','change']],
+  s:[['این خیلی گران است.','This is very expensive.'],['این ارزان است.','This is cheap.']]},
+ {t:'در رستوران', v:[['منو','menu'],['پیشخدمت','waiter'],['صورتحساب','bill'],['سفارش دادن','order'],['خوشمزه','delicious'],['قاشق','spoon'],['چنگال','fork'],['چاقو','knife']],
+  s:[['من یک قهوه سفارش می‌دهم.','I order a coffee.'],['صورتحساب، لطفاً.','The bill, please.']]},
+ {t:'سوپرمارکت', v:[['میوه','fruit'],['سبزی','vegetable'],['گوشت','meat'],['مرغ','chicken'],['تخم‌مرغ','egg'],['شکر','sugar'],['نمک','salt'],['روغن','oil']],
+  s:[['شکر را کجا پیدا کنم؟','Where can I find sugar?'],['من میوه تازه می‌خرم.','I buy fresh fruit.']]},
+ {t:'درخواست مؤدبانه', v:[['می‌خواهم','I would like'],['می‌توانم داشته باشم','can I have'],['این چقدر است؟','how much is it'],['آیا داری؟','do you have'],['ببخشید','excuse me'],['متأسفم','sorry'],['بفرمایید','here you are'],['کمک','help']],
+  s:[['می‌توانم کمی آب داشته باشم؟','Can I have some water?'],['این چقدر است؟','How much is this?']]},
+ {t:'لباس', v:[['پیراهن','shirt'],['شلوار','pants'],['کفش','shoes'],['لباس زنانه','dress'],['کت','jacket'],['کلاه','hat'],['جوراب','socks'],['دامن','skirt']],
+  s:[['این کفش‌ها قشنگ هستند.','These shoes are nice.'],['من یک کت جدید می‌خرم.','I buy a new jacket.']]},
+]},
+{ t:'سفر و جابجایی', d:'حمل‌ونقل، هتل و فرودگاه', ic:'✈️', L:[
+ {t:'وسایل نقلیه', v:[['ماشین','car'],['اتوبوس','bus'],['قطار','train'],['تاکسی','taxi'],['هواپیما','plane'],['دوچرخه','bicycle'],['مترو','subway'],['بلیت','ticket']],
+  s:[['من با اتوبوس می‌روم.','I go by bus.'],['بلیت قطار کجاست؟','Where is the train ticket?']]},
+ {t:'جهت‌یابی', v:[['چپ','left'],['راست','right'],['مستقیم','straight'],['شمال','north'],['جنوب','south'],['پشت','behind'],['کنار','next to'],['نزدیک','near']],
+  s:[['مستقیم برو.','Go straight.'],['بانک سمت راست است.','The bank is on the right.']]},
+ {t:'هتل', v:[['اتاق','room'],['رزرو','reservation'],['پاسپورت','passport'],['کلید','key'],['پذیرش','reception'],['چمدان','luggage'],['ورود به هتل','check in'],['تسویه حساب','check out']],
+  s:[['من یک اتاق رزرو کرده‌ام.','I have a reservation.'],['پاسپورت شما، لطفاً.','Your passport, please.']]},
+ {t:'فرودگاه', v:[['فرودگاه','airport'],['پرواز','flight'],['گیت','gate'],['کارت پرواز','boarding pass'],['تأخیر','delay'],['رسیدن','arrive'],['حرکت کردن','depart'],['چمدان دستی','carry-on']],
+  s:[['پرواز من تأخیر دارد.','My flight is delayed.'],['من ساعت ده می‌رسم.','I arrive at ten.']]},
+ {t:'گردشگری', v:[['گردشگر','tourist'],['موزه','museum'],['ساحل','beach'],['کوه','mountain'],['شهر','city'],['نقشه','map'],['دوربین','camera'],['راهنما','guide']],
+  s:[['ما به موزه می‌رویم.','We go to the museum.'],['دریا خیلی زیباست.','The sea is very beautiful.']]},
+]},
+{ t:'کار و تحصیل', d:'شغل، محیط کار و دانشگاه', ic:'💼', L:[
+ {t:'شغل‌ها', v:[['پزشک','doctor'],['پرستار','nurse'],['مهندس','engineer'],['معلم','teacher'],['راننده','driver'],['آشپز','cook'],['خلبان','pilot'],['کشاورز','farmer']],
+  s:[['او پزشک است.','She is a doctor.'],['پدرم راننده است.','My father is a driver.']]},
+ {t:'محیط کار', v:[['دفتر کار','office'],['جلسه','meeting'],['رئیس','boss'],['همکار','colleague'],['حقوق','salary'],['پروژه','project'],['کامپیوتر','computer'],['ایمیل','email']],
+  s:[['من یک ایمیل می‌فرستم.','I send an email.'],['جلسه ساعت ده است.','The meeting is at ten.']]},
+ {t:'دانشگاه', v:[['دانشگاه','university'],['دانشجو','college student'],['امتحان','exam'],['تکلیف','homework'],['نمره','grade'],['کتابخانه','library'],['دوره','course'],['مدرک','degree']],
+  s:[['فردا امتحان دارم.','I have an exam tomorrow.'],['من در دانشگاه درس می‌خوانم.','I study at university.']]},
+ {t:'مهارت‌های زبانی', v:[['توانستن','can'],['صحبت کردن','speak'],['نوشتن','write'],['فهمیدن','understand'],['گوش دادن','listen'],['یاد گرفتن','learn'],['تمرین کردن','practice'],['تکرار کردن','repeat']],
+  s:[['من می‌توانم انگلیسی صحبت کنم.','I can speak English.'],['من هر روز تمرین می‌کنم.','I practice every day.']]},
+ {t:'ارتباط', v:[['نامه','letter'],['پیام','message'],['تماس تلفنی','phone call'],['آدرس','address'],['شماره','number'],['سؤال','question'],['جواب','answer'],['وب‌سایت','website']],
+  s:[['من برایت پیام می‌فرستم.','I send you a message.'],['شماره تلفن شما چیست؟','What is your phone number?']]},
+]},
+{ t:'احساسات و توصیف', d:'احساس، ظاهر و نظر دادن', ic:'😊', L:[
+ {t:'احساسات', v:[['خوشحال','happy'],['غمگین','sad'],['خسته','tired'],['عصبانی','angry'],['هیجان‌زده','excited'],['آرام','calm'],['گرسنه','hungry'],['تشنه','thirsty']],
+  s:[['من خیلی خوشحالم.','I am very happy.'],['او گرسنه است.','He is hungry.']]},
+ {t:'توصیف ظاهر', v:[['قدبلند','tall'],['کوتاه','short'],['جوان','young'],['پیر','elderly'],['زیبا','beautiful'],['زشت','ugly'],['قوی','strong'],['لاغر','thin']],
+  s:[['او خیلی قدبلند است.','He is very tall.'],['آن زن جوان است.','That woman is young.']]},
+ {t:'توصیف اشیا', v:[['بزرگ','big'],['کوچک','small'],['جدید','new'],['قدیمی','old'],['سریع','fast'],['آهسته','slow'],['گرم','hot'],['سرد','cold']],
+  s:[['این ماشین سریع است.','This car is fast.'],['آب خیلی گرم است.','The water is very hot.']]},
+ {t:'نظر دادن', v:[['خوب','good'],['بد','bad'],['عالی','great'],['خسته‌کننده','boring'],['جالب','interesting'],['آسان','easy'],['سخت','difficult'],['مهم','important']],
+  s:[['این فیلم جالب است.','This movie is interesting.'],['انگلیسی آسان نیست.','English is not easy.']]},
+ {t:'احساسات ظریف', v:[['عصبی','nervous'],['بی‌حوصله','bored'],['متعجب','surprised'],['نگران','worried'],['مغرور','proud'],['ترسیده','afraid'],['تنها','lonely'],['گیج','confused']],
+  s:[['من کمی نگران هستم.','I am a little worried.'],['او به موفقیتش افتخار می‌کند.','He is proud of his success.']]},
+]},
+{ t:'مکالمه‌ی حرفه‌ای', d:'اصطلاحات، موافقت، تلفن و افعال', ic:'🗣️', L:[
+ {t:'اصطلاحات روزمره', v:[['مشکلی نیست','no problem'],['مراقب خودت باش','take care'],['بعداً می‌بینمت','see you later'],['البته','of course'],['موفق باشی','good luck'],['اهمیتی نده','never mind'],['نگران نباش','no worries'],['چه خبر؟','what is up']],
+  s:[['موفق باشی!','Good luck!'],['بعداً می‌بینمت.','See you later.']]},
+ {t:'موافقت و نظر', v:[['موافقم','I agree'],['مخالفم','I disagree'],['فکر می‌کنم','I think'],['باور دارم','I believe'],['حدس می‌زنم','I guess'],['مطمئن نیستم','I am not sure'],['شاید','maybe'],['حتماً','definitely']],
+  s:[['من موافقم.','I agree.'],['فکر می‌کنم حق با توست.','I think you are right.']]},
+ {t:'تشکر و عذرخواهی', v:[['خیلی ممنونم','thank you so much'],['خواهش می‌کنم','you are welcome'],['با کمال میل','my pleasure'],['اشکالی ندارد','that is okay'],['مرا ببخش','forgive me'],['قدردانی می‌کنم','I appreciate it'],['اشتباه','mistake'],['عذرخواهی','apology']],
+  s:[['ببخشید، دیر شد.','Sorry, I am late.'],['خواهش می‌کنم.','You are welcome.']]},
+ {t:'تلفن', v:[['صبر کن','hold on'],['قطع کردن','hang up'],['دوباره تماس بگیر','call back'],['شماره اشتباه','wrong number'],['پیام صوتی','voicemail'],['یک لحظه','one moment'],['تلفن همراه','mobile phone'],['شارژر','charger']],
+  s:[['لطفاً یک لحظه صبر کن.','Please hold on.'],['شما شماره اشتباه گرفته‌اید.','You have the wrong number.']]},
+ {t:'افعال کاربردی', v:[['برخاستن','get up'],['بیرون رفتن','go out'],['برگشتن','come back'],['برداشتن','take'],['دادن','give'],['ساختن','make'],['دنبال گشتن','look for'],['پیدا کردن','find']],
+  s:[['من صبح زود بیدار می‌شوم.','I get up early in the morning.'],['دنبال کلیدهایم می‌گردم.','I am looking for my keys.']]},
+]},
+];
+DATA.push(
+{ t:'تکنولوژی (B1)', d:'اینترنت، دستگاه‌ها و شبکه‌های اجتماعی', ic:'💻', L:[
+ {t:'دستگاه‌ها', v:[['صفحه‌نمایش','screen'],['باتری','battery'],['صفحه‌کلید','keyboard'],['هدفون','headphones'],['دستگاه','device'],['نصب کردن','install'],['دانلود کردن','download'],['به‌روزرسانی','update']],
+  s:[['باتری گوشی من تمام شده است.','My phone battery has run out.'],['لطفاً برنامه را به‌روزرسانی کن.','Please update the app.']]},
+ {t:'اینترنت', v:[['اتصال','connection'],['رمز عبور','password'],['جست‌وجو کردن','search'],['حساب کاربری','account'],['ورود','log in'],['خروج','log out'],['امن','secure'],['حریم خصوصی','privacy']],
+  s:[['من رمز عبورم را فراموش کرده‌ام.','I have forgotten my password.'],['اتصال اینترنت ضعیف است.','The internet connection is weak.']]},
+ {t:'شبکه‌های اجتماعی', v:[['دنبال کردن','follow'],['به اشتراک گذاشتن','share'],['نظر','comment'],['پسندیدن','like'],['پست','post'],['دنبال‌کننده','follower'],['تأثیرگذار','influencer'],['محتوا','content']],
+  s:[['او هر روز یک پست به اشتراک می‌گذارد.','She shares a post every day.'],['من او را دنبال می‌کنم.','I follow her.']]},
+ {t:'هوش مصنوعی و آینده', v:[['هوش مصنوعی','artificial intelligence'],['ربات','robot'],['اختراع','invention'],['پیشرفت','progress'],['خودکار','automatic'],['داده','data'],['نرم‌افزار','software'],['نوآوری','innovation']],
+  s:[['ربات‌ها کارهای زیادی انجام می‌دهند.','Robots do many jobs.'],['فناوری زندگی را آسان‌تر کرده است.','Technology has made life easier.']]},
+ {t:'مشکلات فنی', v:[['خراب شدن','break down'],['خطا','error'],['تعمیر کردن','repair'],['ذخیره کردن','save'],['پاک کردن','delete'],['ریستارت کردن','restart'],['کند','slow'],['قفل شده','frozen']],
+  s:[['کامپیوترم قفل کرده است.','My computer has frozen.'],['فایل را ذخیره کردی؟','Did you save the file?']]},
+]},
+{ t:'سلامت و بدن (B1)', d:'بیماری، دکتر و سبک زندگی', ic:'🩺', L:[
+ {t:'علائم بیماری', v:[['تب','fever'],['سرفه','cough'],['سردرد','headache'],['سرماخوردگی','cold'],['درد','pain'],['حالت تهوع','nausea'],['آلرژی','allergy'],['زخم','wound']],
+  s:[['من از دیروز تب دارم.','I have had a fever since yesterday.'],['او سرفه می‌کند.','He is coughing.']]},
+ {t:'پیش دکتر', v:[['نسخه','prescription'],['دارو','medicine'],['قرص','pill'],['بیمارستان','hospital'],['داروخانه','pharmacy'],['وقت ملاقات','appointment'],['درمان','treatment'],['بیمار','patient']],
+  s:[['من باید پیش دکتر بروم.','I need to see a doctor.'],['این دارو را سه بار در روز بخور.','Take this medicine three times a day.']]},
+ {t:'تغذیه و ورزش', v:[['سالم','healthy'],['رژیم غذایی','diet'],['ورزش','exercise'],['وزن','weight'],['پروتئین','protein'],['ویتامین','vitamin'],['چاق','overweight'],['تناسب اندام','fitness']],
+  s:[['ورزش برای سلامتی مفید است.','Exercise is good for your health.'],['من سعی می‌کنم کمتر شیرینی بخورم.','I try to eat less sugar.']]},
+ {t:'سلامت روان', v:[['استرس','stress'],['اضطراب','anxiety'],['آرامش','relaxation'],['خواب','sleep'],['افسردگی','depression'],['انگیزه','motivation'],['تمرکز','concentration'],['عادت','habit']],
+  s:[['من این روزها خیلی استرس دارم.','I am very stressed these days.'],['خواب کافی مهم است.','Enough sleep is important.']]},
+ {t:'حوادث و اورژانس', v:[['حادثه','accident'],['اورژانس','emergency'],['آمبولانس','ambulance'],['آسیب دیدن','injure'],['کمک‌های اولیه','first aid'],['خون','blood'],['شکستگی','fracture'],['نجات دادن','rescue']],
+  s:[['زود به آمبولانس زنگ بزن!','Call an ambulance quickly!'],['او در حادثه آسیب دید.','He was injured in the accident.']]},
+]},
+{ t:'محیط زیست (B1)', d:'طبیعت، آب‌وهوا و آلودگی', ic:'🌳', L:[
+ {t:'آب‌وهوا', v:[['باران','rain'],['برف','snow'],['باد','wind'],['طوفان','storm'],['مه','fog'],['دما','temperature'],['خشک','dry'],['مرطوب','humid']],
+  s:[['فردا باران می‌بارد.','It will rain tomorrow.'],['دیروز طوفان شدیدی آمد.','A strong storm came yesterday.']]},
+ {t:'طبیعت', v:[['جنگل','forest'],['رودخانه','river'],['دریاچه','lake'],['بیابان','desert'],['جزیره','island'],['دره','valley'],['خاک','soil'],['برگ','leaf']],
+  s:[['ما کنار رودخانه قدم زدیم.','We walked by the river.'],['جنگل پر از درخت است.','The forest is full of trees.']]},
+ {t:'آلودگی', v:[['آلودگی','pollution'],['زباله','rubbish'],['دود','smoke'],['سمی','toxic'],['فاضلاب','sewage'],['صدا','noise'],['آسیب رساندن','harm'],['پاک','clean']],
+  s:[['آلودگی هوا مشکل بزرگی است.','Air pollution is a big problem.'],['زباله را در رودخانه نریز.','Do not throw rubbish in the river.']]},
+ {t:'حفاظت از طبیعت', v:[['بازیافت','recycling'],['انرژی','energy'],['صرفه‌جویی کردن','save'],['حفاظت کردن','protect'],['منابع','resources'],['خورشیدی','solar'],['منقرض','extinct'],['زیستگاه','habitat']],
+  s:[['ما باید از طبیعت محافظت کنیم.','We must protect nature.'],['انرژی خورشیدی پاک است.','Solar energy is clean.']]},
+ {t:'گرمایش زمین', v:[['گرمایش جهانی','global warming'],['تغییر اقلیم','climate change'],['یخچال طبیعی','glacier'],['سیل','flood'],['خشکسالی','drought'],['انتشار','emission'],['گازهای گلخانه‌ای','greenhouse gases'],['سوخت فسیلی','fossil fuel']],
+  s:[['یخچال‌های طبیعی در حال ذوب شدن هستند.','Glaciers are melting.'],['خشکسالی کشاورزان را تحت تأثیر قرار می‌دهد.','Drought affects farmers.']]},
+]},
+{ t:'آموزش و جامعه (B2)', d:'واژگان پرتکرار آیلتس', ic:'🎓', L:[
+ {t:'نظام آموزشی', v:[['برنامه درسی','curriculum'],['آموزش','education'],['مدرسه دولتی','state school'],['شهریه','tuition fees'],['بورسیه','scholarship'],['سواد','literacy'],['آموزش از راه دور','distance learning'],['فارغ‌التحصیل','graduate']],
+  s:[['آموزش باید برای همه رایگان باشد.','Education should be free for everyone.'],['او بورسیه تحصیلی گرفت.','She received a scholarship.']]},
+ {t:'جامعه', v:[['جامعه','society'],['جمعیت','population'],['نابرابری','inequality'],['فقر','poverty'],['جرم','crime'],['همسایگان','neighbourhood'],['فرهنگ','culture'],['سنت','tradition']],
+  s:[['جمعیت شهرها به سرعت رشد می‌کند.','City populations are growing rapidly.'],['فقر یک مشکل جهانی است.','Poverty is a global problem.']]},
+ {t:'رسانه و تبلیغات', v:[['تبلیغات','advertising'],['رسانه','media'],['خبر','news'],['روزنامه‌نگار','journalist'],['تأثیر گذاشتن','influence'],['مصرف‌کننده','consumer'],['جلب توجه کردن','attract'],['سانسور','censorship']],
+  s:[['تبلیغات بر مصرف‌کنندگان تأثیر می‌گذارد.','Advertising influences consumers.'],['رسانه‌ها افکار عمومی را شکل می‌دهند.','The media shapes public opinion.']]},
+ {t:'شهرنشینی', v:[['شهرنشینی','urbanisation'],['ترافیک','traffic'],['حمل‌ونقل عمومی','public transport'],['مسکن','housing'],['زیرساخت','infrastructure'],['حومه','suburb'],['روستایی','rural'],['مهاجرت','migration']],
+  s:[['بسیاری از مردم به شهر مهاجرت می‌کنند.','Many people migrate to cities.'],['ترافیک شهرهای بزرگ زیاد است.','Traffic in big cities is heavy.']]},
+ {t:'مزایا و معایب', v:[['مزیت','advantage'],['عیب','disadvantage'],['فایده','benefit'],['خطر','risk'],['پیامد','consequence'],['راه‌حل','solution'],['علت','cause'],['اثر','effect']],
+  s:[['این کار مزایا و معایبی دارد.','This has advantages and disadvantages.'],['علت اصلی این مشکل چیست؟','What is the main cause of this problem?']]},
+]},
+{ t:'اقتصاد و کار (B2)', d:'پول، کسب‌وکار و شغل', ic:'📈', L:[
+ {t:'اقتصاد', v:[['اقتصاد','economy'],['تورم','inflation'],['بیکاری','unemployment'],['درآمد','income'],['مالیات','tax'],['بودجه','budget'],['سرمایه‌گذاری','investment'],['بحران','crisis']],
+  s:[['تورم قیمت‌ها را بالا می‌برد.','Inflation raises prices.'],['دولت بودجه را کاهش داد.','The government reduced the budget.']]},
+ {t:'کسب‌وکار', v:[['شرکت','company'],['مشتری','customer'],['سود','profit'],['زیان','loss'],['رقیب','competitor'],['تولید','production'],['صادرات','export'],['واردات','import']],
+  s:[['شرکت امسال سود زیادی کرد.','The company made a large profit this year.'],['ما کالا صادر می‌کنیم.','We export goods.']]},
+ {t:'استخدام', v:[['استخدام کردن','hire'],['رزومه','CV'],['مصاحبه','interview'],['متقاضی','applicant'],['تجربه','experience'],['مهارت','skill'],['ارتقا','promotion'],['استعفا دادن','resign']],
+  s:[['من برای مصاحبه آماده هستم.','I am ready for the interview.'],['او به‌زودی ارتقا می‌گیرد.','He will get a promotion soon.']]},
+ {t:'مدیریت زمان', v:[['مهلت','deadline'],['برنامه','schedule'],['اولویت','priority'],['بهره‌وری','productivity'],['به تأخیر انداختن','postpone'],['تمام کردن','complete'],['مدیریت کردن','manage'],['فشرده','tight']],
+  s:[['مهلت پروژه فردا است.','The project deadline is tomorrow.'],['باید کارها را اولویت‌بندی کنی.','You need to prioritise your tasks.']]},
+ {t:'کار از راه دور', v:[['دورکاری','remote work'],['انعطاف‌پذیر','flexible'],['تعادل کار و زندگی','work-life balance'],['ساعت اضافه‌کاری','overtime'],['همکاری','cooperation'],['فرسودگی شغلی','burnout'],['دستمزد','wage'],['قرارداد','contract']],
+  s:[['دورکاری انعطاف‌پذیری بیشتری می‌دهد.','Remote work gives more flexibility.'],['او قرارداد را امضا کرد.','He signed the contract.']]},
+]},
+{ t:'گرامر و پیوندها (B2)', d:'کلمات ربط، قیدها و افعال عبارتی', ic:'🧩', L:[
+ {t:'کلمات ربط', v:[['اما','however'],['علاوه بر این','moreover'],['بنابراین','therefore'],['در نتیجه','as a result'],['با وجود','despite'],['در حالی که','whereas'],['به‌علاوه','in addition'],['به‌عنوان مثال','for example']],
+  s:[['او خسته بود، اما به کار ادامه داد.','He was tired; however, he kept working.'],['او سخت درس خواند، بنابراین قبول شد.','He studied hard, therefore he passed.']]},
+ {t:'قیدهای تکرار', v:[['همیشه','always'],['معمولاً','usually'],['گاهی','sometimes'],['به‌ندرت','rarely'],['هرگز','never'],['اغلب','often'],['به‌طور مرتب','regularly'],['اخیراً','recently']],
+  s:[['من به‌ندرت دیر می‌کنم.','I rarely arrive late.'],['او اغلب در کتابخانه درس می‌خواند.','She often studies in the library.']]},
+ {t:'افعال عبارتی', v:[['رها کردن','give up'],['ادامه دادن','carry on'],['بررسی کردن','look into'],['به‌دست آوردن','come up with'],['مواجه شدن','deal with'],['رسیدن به','catch up'],['برگزار کردن','set up'],['کنار آمدن','get along']],
+  s:[['هرگز تسلیم نشو.','Never give up.'],['ما باید این مشکل را بررسی کنیم.','We must look into this problem.']]},
+ {t:'مقایسه و شدت', v:[['خیلی','extremely'],['کاملاً','completely'],['تقریباً','nearly'],['به‌اندازه کافی','enough'],['بیش از حد','too much'],['کمی','slightly'],['بسیار بیشتر','far more'],['بهتر','better']],
+  s:[['این آزمون کاملاً متفاوت بود.','This exam was completely different.'],['او به‌اندازه کافی تلاش نکرد.','He did not try hard enough.']]},
+ {t:'زمان‌ها و عبارت‌های زمانی', v:[['قبلاً','already'],['هنوز','yet'],['از آن موقع','since'],['به مدت','for'],['پیش','ago'],['به‌زودی','soon'],['پس از','after'],['پیش از','before']],
+  s:[['من ده سال است انگلیسی یاد می‌گیرم.','I have been learning English for ten years.'],['او دو روز پیش رسید.','He arrived two days ago.']]},
+]},
+{ t:'واژگان آکادمیک (B2)', d:'مناسب Writing و Reading آیلتس', ic:'📚', L:[
+ {t:'افعال آکادمیک', v:[['تحلیل کردن','analyse'],['ارزیابی کردن','evaluate'],['نشان دادن','demonstrate'],['پیشنهاد دادن','suggest'],['نتیجه گرفتن','conclude'],['توصیف کردن','describe'],['مقایسه کردن','compare'],['توضیح دادن','explain']],
+  s:[['پژوهش‌ها نشان می‌دهند که ورزش مفید است.','Research suggests that exercise is beneficial.'],['باید داده‌ها را تحلیل کنیم.','We need to analyse the data.']]},
+ {t:'توصیف نمودار', v:[['افزایش یافتن','increase'],['کاهش یافتن','decrease'],['ثابت ماندن','remain stable'],['نوسان','fluctuate'],['اوج','peak'],['شدید','sharp'],['تدریجی','gradual'],['نسبت','proportion']],
+  s:[['تعداد دانشجویان به‌تدریج افزایش یافت.','The number of students increased gradually.'],['قیمت‌ها در سال ۲۰۲۰ به اوج رسیدند.','Prices peaked in 2020.']]},
+ {t:'ابراز نظر در Writing', v:[['به نظر من','in my opinion'],['از یک طرف','on the one hand'],['از طرف دیگر','on the other hand'],['در پایان','in conclusion'],['به‌طور کلی','overall'],['بدون شک','undoubtedly'],['به‌طور خلاصه','in summary'],['به عقیده بسیاری','many people believe']],
+  s:[['به نظر من، آموزش بسیار مهم است.','In my opinion, education is very important.'],['در پایان، من با این نظر موافقم.','In conclusion, I agree with this view.']]},
+ {t:'صفت‌های آکادمیک', v:[['قابل‌توجه','significant'],['ضروری','essential'],['مناسب','appropriate'],['پیچیده','complex'],['مؤثر','effective'],['آشکار','obvious'],['محدود','limited'],['گوناگون','various']],
+  s:[['این یک تغییر قابل‌توجه است.','This is a significant change.'],['مشکل پیچیده‌تر از آنچه فکر می‌کردیم است.','The problem is more complex than we thought.']]},
+ {t:'سخنرانی و Speaking', v:[['تا جایی که می‌دانم','as far as I know'],['راستش','to be honest'],['اجازه بده فکر کنم','let me think'],['منظورم این است','what I mean is'],['برای مثال','for instance'],['خلاصه','in short'],['فکر کنم','I suppose'],['به‌نظرم می‌رسد','it seems to me']],
+  s:[['راستش، من تصمیم نگرفته‌ام.','To be honest, I have not decided.'],['اجازه بده یک لحظه فکر کنم.','Let me think for a moment.']]},
+]},
+);
+DATA.push(
+{ t:'گرامر: گذشته (B1)', d:'افعال بی‌قاعده و ساختار زمان گذشته', ic:'⏪', L:[
+ {t:'گذشتهٔ بی‌قاعده ۱', v:[['رفت','went'],['دید','saw'],['خورد','ate'],['آمد','came'],['گرفت','took'],['داد','gave'],['نوشت','wrote'],['خرید','bought']],
+  s:[['دیروز به مدرسه رفتم.','I went to school yesterday.'],['او یک کتاب خرید.','She bought a book.']]},
+ {t:'گذشتهٔ بی‌قاعده ۲', v:[['گفت','said'],['ساخت','made'],['دانست','knew'],['فکر کرد','thought'],['پیدا کرد','found'],['گفت (به کسی)','told'],['شنید','heard'],['ایستاد','stood']],
+  s:[['من جواب را می‌دانستم.','I knew the answer.'],['ما صدایی شنیدیم.','We heard a noise.']]},
+ {t:'گذشتهٔ بی‌قاعده ۳', v:[['خوابید','slept'],['دوید','ran'],['نشست','sat'],['نوشید','drank'],['آموخت','taught'],['آورد','brought'],['باخت','lost'],['برد','won']],
+  s:[['او دیشب زود خوابید.','He slept early last night.'],['تیم ما بازی را برد.','Our team won the game.']]},
+ {t:'منفی و سؤالی گذشته', v:[['نرفتم','did not go'],['ندیدم','did not see'],['آیا رفتی؟','Did you go?'],['او چه کرد؟','What did he do?'],['کجا رفتی؟','Where did you go?'],['کی آمد؟','When did she come?'],['چرا نیامدی؟','Why did you not come?'],['دیروز','yesterday']],
+  s:[['من دیروز او را ندیدم.','I did not see him yesterday.'],['شما کجا رفتید؟','Where did you go?']]},
+ {t:'گذشتهٔ استمراری', v:[['داشتم می‌رفتم','was going'],['داشتند می‌خوردند','were eating'],['وقتی','when'],['در حالی که','while'],['داشت می‌خواند','was reading'],['داشتیم بازی می‌کردیم','were playing'],['ناگهان','suddenly'],['آن موقع','at that time']],
+  s:[['وقتی زنگ زدی، داشتم غذا می‌خوردم.','I was eating when you called.'],['آنها داشتند فوتبال بازی می‌کردند.','They were playing football.']]},
+]},
+{ t:'گرامر: حال کامل و آینده (B1)', d:'have done، will و going to', ic:'⏩', L:[
+ {t:'حال کامل', v:[['رفته‌ام','have gone'],['دیده‌ام','have seen'],['خورده‌ام','have eaten'],['تمام کرده‌ام','have finished'],['او نوشته است','has written'],['او آمده است','has come'],['تا به حال','ever'],['هرگز','never']],
+  s:[['من هرگز به لندن نرفته‌ام.','I have never been to London.'],['او کارش را تمام کرده است.','She has finished her work.']]},
+ {t:'since و for', v:[['از سال ۲۰۲۰','since 2020'],['از دیروز','since yesterday'],['به مدت دو ساعت','for two hours'],['به مدت سه سال','for three years'],['مدت‌ها','for a long time'],['از زمان کودکی','since childhood'],['چند وقت است؟','how long'],['تا حالا','so far']],
+  s:[['من از سال ۲۰۲۰ اینجا زندگی می‌کنم.','I have lived here since 2020.'],['او دو ساعت است منتظر است.','She has waited for two hours.']]},
+ {t:'آینده با will', v:[['خواهم رفت','will go'],['نخواهم رفت','will not go'],['فکر می‌کنم','I think'],['شاید','maybe'],['احتمالاً','probably'],['حتماً','definitely'],['قول می‌دهم','I promise'],['فردا','tomorrow']],
+  s:[['فردا به تو زنگ می‌زنم.','I will call you tomorrow.'],['فکر می‌کنم فردا باران ببارد.','I think it will rain tomorrow.']]},
+ {t:'آینده با going to', v:[['قصد دارم بروم','am going to go'],['قصد دارد بخرد','is going to buy'],['قصد دارند بمانند','are going to stay'],['برنامه‌ریزی کردن','plan'],['هفتهٔ آینده','next week'],['سال آینده','next year'],['آخر هفته','at the weekend'],['به‌زودی','soon']],
+  s:[['من قصد دارم انگلیسی یاد بگیرم.','I am going to learn English.'],['آنها قصد دارند خانه بخرند.','They are going to buy a house.']]},
+ {t:'مقایسه زمان‌ها', v:[['هر روز','every day'],['همین الان','right now'],['دیروز','yesterday'],['تا حالا','up to now'],['فردا','tomorrow'],['هنوز','still'],['قبلاً','before'],['بعداً','later']],
+  s:[['من هر روز ورزش می‌کنم.','I exercise every day.'],['او همین الان دارد درس می‌خواند.','He is studying right now.']]},
+]},
+{ t:'گرامر: شرطی، مجهول، وجهی (B2)', d:'ساختارهای پرکاربرد آیلتس', ic:'🧠', L:[
+ {t:'شرطی نوع ۱ و ۲', v:[['اگر','if'],['مگر اینکه','unless'],['اگر باران ببارد','if it rains'],['اگر من تو بودم','if I were you'],['می‌توانست','would be able to'],['به شرطی که','provided that'],['در غیر این صورت','otherwise'],['در صورتی که','in case']],
+  s:[['اگر باران ببارد، در خانه می‌مانم.','If it rains, I will stay at home.'],['اگر من تو بودم، قبول می‌کردم.','If I were you, I would accept.']]},
+ {t:'مجهول', v:[['ساخته می‌شود','is made'],['ساخته شد','was made'],['گفته شده است','has been said'],['نوشته خواهد شد','will be written'],['دیده می‌شود','is seen'],['ساخته شده است','has been built'],['فروخته می‌شود','is sold'],['استفاده می‌شود','is used']],
+  s:[['این پل در سال ۱۹۹۰ ساخته شد.','This bridge was built in 1990.'],['انگلیسی در بسیاری از کشورها استفاده می‌شود.','English is used in many countries.']]},
+ {t:'افعال وجهی', v:[['باید','must'],['نباید','must not'],['می‌تواند','can'],['ممکن است','might'],['بهتر است','should'],['لازم نیست','do not have to'],['مجبور است','has to'],['می‌توانست','could']],
+  s:[['شما نباید اینجا سیگار بکشید.','You must not smoke here.'],['تو باید بیشتر بخوابی.','You should sleep more.']]},
+ {t:'جملهٔ موصولی', v:[['کسی که','who'],['چیزی که','which'],['مکانی که','where'],['مال او','whose'],['که (ربط)','that'],['زمانی که','when'],['دلیلی که','the reason why'],['هر کسی که','whoever']],
+  s:[['مردی که آنجا ایستاده معلم من است.','The man who is standing there is my teacher.'],['این کتابی است که دوست دارم.','This is the book that I like.']]},
+ {t:'نقل قول و پرسش غیرمستقیم', v:[['گفت که','said that'],['پرسید که','asked if'],['می‌خواست بداند','wanted to know'],['گفت او خواهد آمد','said he would come'],['نمی‌دانم','I do not know'],['می‌توانید بگویید','could you tell me'],['به من گفت','told me'],['توضیح داد','explained']],
+  s:[['او گفت که خسته است.','He said that he was tired.'],['می‌توانید بگویید ایستگاه کجاست؟','Could you tell me where the station is?']]},
+]},
+);
+
+/* واحد خواندن: متن‌های کوتاه با سؤال درک مطلب (هر متن یک درس) */
+DATA.push({
+  t: 'درک مطلب', d: 'متن‌های کوتاه انگلیسی و سؤال‌های درک مطلب', ic: '📰', reading: true,
+  L: [
+    { t: 'یک روز معمولی من', r: 'My name is Sara. I get up at seven o\'clock every morning. I have breakfast with my family. Then I go to work by bus. My office is near the park. I finish work at five. In the evening I cook dinner and read a book.',
+      rq: [
+        { q: 'ساعت چند از خواب بیدار می‌شود؟', o: ['at six', 'at seven', 'at eight', 'at five'], a: 1 },
+        { q: 'سارا با چه وسیله‌ای به کار می‌رود؟', o: ['by car', 'by bike', 'by bus', 'on foot'], a: 2 },
+        { q: 'عصرها چه کار می‌کند؟', o: ['She goes to the park.', 'She cooks and reads.', 'She sleeps early.', 'She works late.'], a: 1 } ] },
+    { t: 'خرید از فروشگاه', r: 'Last Saturday, Ali went to the supermarket. He needed milk, eggs, and bread. The milk was cheap, but the eggs were expensive. He also bought some apples for his children. He paid with a credit card and went home at noon.',
+      rq: [
+        { q: 'علی چه چیزهایی لازم داشت؟', o: ['rice and tea', 'milk, eggs and bread', 'fish and meat', 'cake and juice'], a: 1 },
+        { q: 'تخم‌مرغ‌ها چطور بودند؟', o: ['cheap', 'free', 'expensive', 'old'], a: 2 },
+        { q: 'علی با چه پرداخت کرد؟', o: ['cash', 'a check', 'a credit card', 'his phone'], a: 2 } ] },
+    { t: 'سفر به شمال', r: 'Last summer, my friends and I visited the north of Iran. We stayed in a small village near the Caspian Sea. The weather was warm and the food was delicious. We swam every day and took many photos. It was the best trip of my life.',
+      rq: [
+        { q: 'دوستان کجا رفتند؟', o: ['to the south', 'to the north', 'to the west', 'abroad'], a: 1 },
+        { q: 'آب‌وهوا چطور بود؟', o: ['cold', 'rainy', 'warm', 'windy'], a: 2 },
+        { q: 'هر روز چه کار می‌کردند؟', o: ['They slept.', 'They worked.', 'They swam.', 'They studied.'], a: 2 } ] },
+    { t: 'دفتر کار جدید', r: 'Maryam started a new job last month. Her office is on the fifth floor of a tall building. There are twenty people in her team. Her manager is kind and helpful. Maryam likes her job, but the journey is long. She usually takes the metro and then walks for ten minutes.',
+      rq: [
+        { q: 'دفتر مریم در کدام طبقه است؟', o: ['the first', 'the third', 'the fifth', 'the tenth'], a: 2 },
+        { q: 'مدیر مریم چطور است؟', o: ['strict', 'kind and helpful', 'lazy', 'angry'], a: 1 },
+        { q: 'مریم معمولاً چطور می‌رود؟', o: ['by taxi', 'by metro and on foot', 'by car', 'by bike'], a: 1 } ] },
+    { t: 'یادگیری زبان', r: 'Learning a language takes time and patience. You should practise every day, even for only fifteen minutes. Listening to English music and watching films with subtitles can help a lot. Do not be afraid of making mistakes. Mistakes are a normal part of learning.',
+      rq: [
+        { q: 'به نظر متن، یادگیری زبان چه نیازی دارد؟', o: ['money only', 'time and patience', 'a teacher from abroad', 'a long holiday'], a: 1 },
+        { q: 'چه پیشنهادی داده شده؟', o: ['practise every day', 'practise once a month', 'never speak', 'only read grammar'], a: 0 },
+        { q: 'درباره اشتباه چه گفته شده؟', o: ['It is a serious problem.', 'It should be hidden.', 'It is a normal part of learning.', 'It means you are bad.'], a: 2 } ] },
+    { t: 'آب‌وهوای شهر ما', r: 'Our city has four seasons. Winter is cold and sometimes snowy. Spring is green and beautiful because many flowers grow. Summer is very hot, so people go to the beach or stay indoors with air conditioning. Autumn is cool and the leaves turn yellow and red.',
+      rq: [
+        { q: 'زمستان در این شهر چطور است؟', o: ['hot and dry', 'cold and sometimes snowy', 'windy all year', 'always rainy'], a: 1 },
+        { q: 'بهار چه ویژگی دارد؟', o: ['It is very hot.', 'Many flowers grow.', 'It snows a lot.', 'Leaves fall.'], a: 1 },
+        { q: 'مردم در تابستان چه کار می‌کنند؟', o: ['They ski.', 'They go to the beach or stay indoors.', 'They plant trees.', 'They travel abroad.'], a: 1 } ] }
+  ]
+});
+
+/* مرحله ۳ (A1): موقعیت‌های روزمره و گرامر پایه */
+DATA.push(
+{ t:'گرامر: حال ساده و استمراری', d:'عادت‌ها و کارهای در حال انجام', ic:'🔄', L:[
+ {t:'حال ساده: من/تو/ما', v:[['من کار می‌کنم','I work'],['تو درس می‌خوانی','you study'],['ما زندگی می‌کنیم','we live'],['آنها بازی می‌کنند','they play'],['من دوست دارم','I like'],['ما می‌خواهیم','we want'],['من نیاز دارم','I need'],['آنها می‌دانند','they know']],
+  s:[['من هر روز کار می‌کنم.','I work every day.'],['ما در تهران زندگی می‌کنیم.','We live in Tehran.']]},
+ {t:'حال ساده: او (s)', v:[['او کار می‌کند','he works'],['او می‌خواند','she reads'],['او دوست دارد','he likes'],['او می‌رود','she goes'],['او دارد','he has'],['او می‌شوید','she washes'],['او می‌خواند (آواز)','he sings'],['او می‌خوابد','she sleeps']],
+  s:[['او هر صبح قهوه می‌نوشد.','She drinks coffee every morning.'],['برادرم فوتبال بازی می‌کند.','My brother plays football.']]},
+ {t:'منفی و سؤالی حال ساده', v:[['من کار نمی‌کنم','I do not work'],['او دوست ندارد','he does not like'],['آیا تو می‌خوانی؟','Do you study?'],['آیا او کار می‌کند؟','Does she work?'],['کجا زندگی می‌کنی؟','Where do you live?'],['چه می‌خواهی؟','What do you want?'],['چرا او گریه می‌کند؟','Why does he cry?'],['آنها نمی‌دانند','they do not know']],
+  s:[['من گوشت نمی‌خورم.','I do not eat meat.'],['آیا او انگلیسی صحبت می‌کند؟','Does she speak English?']]},
+ {t:'قیدهای تکرار', v:[['همیشه','always'],['معمولاً','usually'],['اغلب','often'],['گاهی','sometimes'],['به ندرت','rarely'],['هرگز','never'],['هر روز','every day'],['یک بار در هفته','once a week']],
+  s:[['من همیشه دیر می‌رسم.','I always arrive late.'],['او هرگز قهوه نمی‌خورد.','He never drinks coffee.']]},
+ {t:'حال استمراری', v:[['دارم می‌خوانم','I am reading'],['او دارد می‌خورد','he is eating'],['ما داریم می‌رویم','we are going'],['آنها دارند می‌دوند','they are running'],['الان','now'],['در حال حاضر','at the moment'],['دارم صحبت می‌کنم','I am talking'],['باران می‌بارد','it is raining']],
+  s:[['الان دارم آشپزی می‌کنم.','I am cooking now.'],['بچه‌ها دارند بازی می‌کنند.','The children are playing.']]}
+]},
+{ t:'کارهای خانه', d:'نظافت، آشپزی و لوازم خانه', ic:'🧹', L:[
+ {t:'کارهای خانه', v:[['تمیز کردن','clean'],['جارو کردن','sweep'],['شستن ظرف','wash the dishes'],['لباس شستن','do the laundry'],['اتو کردن','iron'],['آشغال','trash'],['مرتب کردن','tidy up'],['گردگیری','dust']],
+  s:[['من ظرف‌ها را می‌شویم.','I wash the dishes.'],['لطفاً اتاقت را مرتب کن.','Please tidy up your room.']]},
+ {t:'آشپزخانه', v:[['اجاق','stove'],['یخچال','fridge'],['قابلمه','pot'],['ماهیتابه','pan'],['بشقاب','plate'],['قاشق','spoon'],['چاقو','knife'],['لیوان','glass']],
+  s:[['شیر در یخچال است.','The milk is in the fridge.'],['قابلمه را روی اجاق بگذار.','Put the pot on the stove.']]},
+ {t:'لوازم خانه', v:[['جاروبرقی','vacuum cleaner'],['ماشین لباسشویی','washing machine'],['اتو','iron'],['جارو','broom'],['سطل','bucket'],['مبل','sofa'],['فرش','carpet'],['پرده','curtain']],
+  s:[['جاروبرقی خراب است.','The vacuum cleaner is broken.'],['فرش کثیف است.','The carpet is dirty.']]},
+ {t:'تقسیم کار', v:[['نوبت','turn'],['کمک کردن','help'],['مسئول','responsible'],['هر کس','everyone'],['خودم','myself'],['با هم','together'],['اول','first'],['بعد','then']],
+  s:[['امروز نوبت توست.','It is your turn today.'],['می‌توانی به من کمک کنی؟','Can you help me?']]},
+ {t:'تمیز و کثیف', v:[['تمیز','clean'],['کثیف','dirty'],['نامرتب','messy'],['مرتب','neat'],['مرطوب','wet'],['خشک','dry'],['خالی','empty'],['پر','full']],
+  s:[['آشپزخانه خیلی نامرتب است.','The kitchen is very messy.'],['لیوان خالی است.','The glass is empty.']]}
+]},
+{ t:'شهر و خدمات', d:'پستخانه، بانک و مغازه‌ها', ic:'🏤', L:[
+ {t:'پستخانه', v:[['پستخانه','post office'],['نامه','letter'],['بسته','package'],['تمبر','stamp'],['پست کردن','mail'],['گیرنده','receiver'],['فرستادن','send'],['پست سریع','express mail']],
+  s:[['می‌خواهم این بسته را بفرستم.','I want to send this package.'],['تمبر دارید؟','Do you have stamps?']]},
+ {t:'بانک', v:[['بانک','bank'],['حساب','account'],['پول نقد','cash'],['کارت','card'],['پس‌انداز','savings'],['برداشت','withdraw'],['واریز','deposit'],['خودپرداز','ATM']],
+  s:[['می‌خواهم حساب باز کنم.','I want to open an account.'],['خودپرداز کجاست؟','Where is the ATM?']]},
+ {t:'مغازه‌ها', v:[['نانوایی','bakery'],['داروخانه','pharmacy'],['کتاب‌فروشی','bookstore'],['قصابی','butcher'],['میوه‌فروشی','fruit shop'],['بازار','market'],['مرکز خرید','mall'],['فروشگاه','store']],
+  s:[['نانوایی کنار بانک است.','The bakery is next to the bank.'],['داروخانه تا ساعت ده باز است.','The pharmacy is open until ten.']]},
+ {t:'ساختمان‌های شهر', v:[['بیمارستان','hospital'],['مدرسه','school'],['کتابخانه','library'],['پارک','park'],['پل','bridge'],['چهارراه','crossroads'],['ایستگاه','station'],['اداره پلیس','police station']],
+  s:[['کتابخانه نزدیک پارک است.','The library is near the park.'],['ایستگاه اینجا نیست.','The station is not here.']]},
+ {t:'ساعت کار', v:[['باز','open'],['بسته','closed'],['ساعت کاری','opening hours'],['تعطیل','holiday'],['صف','line'],['منتظر ماندن','wait'],['زود','early'],['دیر','late']],
+  s:[['بانک ساعت نه باز می‌شود.','The bank opens at nine.'],['امروز مغازه تعطیل است.','The shop is closed today.']]}
+]}
+);
+
+/* مرحله ۴ (A2): موقعیت‌ها، مقایسه و برنامه‌ریزی */
+DATA.push(
+{ t:'there is / there are و مقایسه', d:'توصیف مکان و مقایسه‌ی چیزها', ic:'⚖️', L:[
+ {t:'there is / there are', v:[['یک ... هست','there is a'],['چند ... هست','there are some'],['هیچ ... نیست','there is no'],['آیا ... هست؟','is there a'],['چند تا ... هست؟','how many are there'],['یک پارک هست','there is a park'],['دو اتاق هست','there are two rooms'],['شیر نیست','there is no milk']],
+  s:[['در شهر ما یک موزه هست.','There is a museum in our city.'],['در خانه چهار اتاق هست.','There are four rooms in the house.']]},
+ {t:'حروف اضافه مکان', v:[['روی','on'],['زیر','under'],['داخل','in'],['بین','between'],['روبه‌روی','opposite'],['جلوی','in front of'],['پشت','behind'],['کنار','next to']],
+  s:[['گربه زیر میز است.','The cat is under the table.'],['بانک روبه‌روی پارک است.','The bank is opposite the park.']]},
+ {t:'صفت تفضیلی', v:[['بزرگ‌تر','bigger'],['کوچک‌تر','smaller'],['ارزان‌تر','cheaper'],['سریع‌تر','faster'],['بهتر','better'],['بدتر','worse'],['گران‌تر','more expensive'],['جالب‌تر','more interesting']],
+  s:[['این ماشین از آن سریع‌تر است.','This car is faster than that one.'],['هوا امروز بهتر از دیروز است.','The weather is better today than yesterday.']]},
+ {t:'صفت عالی', v:[['بزرگ‌ترین','the biggest'],['کوچک‌ترین','the smallest'],['ارزان‌ترین','the cheapest'],['سریع‌ترین','the fastest'],['بهترین','the best'],['بدترین','the worst'],['گران‌ترین','the most expensive'],['جالب‌ترین','the most interesting']],
+  s:[['او بهترین دوست من است.','She is my best friend.'],['این گران‌ترین مغازه است.','This is the most expensive shop.']]},
+ {t:'as ... as و تشبیه', v:[['به اندازه‌ی','as ... as'],['مثل','like'],['متفاوت','different'],['مشابه','similar'],['یکسان','same'],['بیشتر','more'],['کمتر','less'],['خیلی بیشتر','much more']],
+  s:[['او به اندازه‌ی من بلند است.','He is as tall as me.'],['این دو کتاب متفاوت‌اند.','These two books are different.']]}
+]},
+{ t:'حوادث و پلیس', d:'گزارش دزدی، گم شدن و کمک خواستن', ic:'🚔', L:[
+ {t:'کمک خواستن', v:[['کمک!','help'],['خطر','danger'],['اورژانس','emergency'],['پلیس','police'],['آتش‌نشانی','fire brigade'],['آمبولانس','ambulance'],['سریع','quick'],['هشدار','warning']],
+  s:[['به پلیس زنگ بزن!','Call the police!'],['اینجا اورژانس است.','This is an emergency.']]},
+ {t:'دزدی', v:[['دزد','thief'],['دزدیدن','steal'],['کیف','bag'],['کیف پول','wallet'],['گوشی','phone'],['گزارش','report'],['شاهد','witness'],['گم شدن','get lost']],
+  s:[['کیف پولم دزدیده شد.','My wallet was stolen.'],['می‌خواهم گزارش بدهم.','I want to make a report.']]},
+ {t:'توصیف شخص', v:[['قد بلند','tall'],['قد کوتاه','short'],['لاغر','thin'],['چاق','heavy'],['مو بلند','long hair'],['ریش','beard'],['عینک','glasses'],['جوان','young']],
+  s:[['او مردی قد بلند با عینک بود.','He was a tall man with glasses.'],['موهایش کوتاه بود.','His hair was short.']]},
+ {t:'چه اتفاقی افتاد؟', v:[['اتفاق افتادن','happen'],['تصادف','accident'],['زمین خوردن','fall'],['آسیب دیدن','get hurt'],['دیدن','see'],['شنیدن','hear'],['فرار کردن','run away'],['گرفتن','catch']],
+  s:[['چه اتفاقی افتاد؟','What happened?'],['من یک تصادف دیدم.','I saw an accident.']]},
+ {t:'گم‌شده و پیدا‌شده', v:[['گم کردن','lose'],['پیدا کردن','find'],['کلید','key'],['چتر','umbrella'],['گم‌شده','lost'],['پیدا شده','found'],['اطلاعات','information'],['شماره تلفن','phone number']],
+  s:[['کلیدم را گم کرده‌ام.','I have lost my key.'],['کسی کیفم را پیدا کرد.','Someone found my bag.']]}
+]},
+{ t:'برنامه و دعوت', d:'قرار گذاشتن، پیشنهاد و آینده‌ی نزدیک', ic:'📅', L:[
+ {t:'پیشنهاد دادن', v:[['بیا ...','let us'],['چطوره ...؟','how about'],['چرا نه؟','why not'],['خوب است','sounds good'],['شاید','maybe'],['می‌توانیم','we can'],['می‌خواهی ...؟','would you like to'],['بهتر است','we should']],
+  s:[['بیا سینما برویم.','Let us go to the cinema.'],['چطوره فردا قدم بزنیم؟','How about a walk tomorrow?']]},
+ {t:'دعوت', v:[['دعوت کردن','invite'],['مهمانی','party'],['مهمان','guest'],['پذیرفتن','accept'],['رد کردن','refuse'],['آزاد','free'],['مشغول','busy'],['خوشحال می‌شوم','I would love to']],
+  s:[['تو را به مهمانی دعوت می‌کنم.','I invite you to my party.'],['متأسفم، من مشغولم.','Sorry, I am busy.']]},
+ {t:'قرار گذاشتن', v:[['قرار ملاقات','appointment'],['ملاقات کردن','meet'],['فردا','tomorrow'],['هفته‌ی آینده','next week'],['آخر هفته','weekend'],['چه ساعتی؟','what time'],['کجا؟','where'],['تأیید کردن','confirm']],
+  s:[['فردا ساعت پنج همدیگر را ببینیم.','Let us meet tomorrow at five.'],['آخر هفته آزادی؟','Are you free at the weekend?']]},
+ {t:'going to / will', v:[['می‌خواهم ... بکنم','I am going to'],['قرار است','is going to'],['خواهم کرد','will'],['نخواهم کرد','will not'],['احتمالاً','probably'],['حتماً','definitely'],['به زودی','soon'],['بعداً','later']],
+  s:[['من قرار است سفر کنم.','I am going to travel.'],['فردا به تو زنگ می‌زنم.','I will call you tomorrow.']]},
+ {t:'تغییر برنامه', v:[['لغو کردن','cancel'],['عقب انداختن','postpone'],['عوض کردن','change'],['متأسفانه','unfortunately'],['اشکالی ندارد','no problem'],['مشکل','problem'],['دوباره','again'],['به جای','instead']],
+  s:[['باید قرار را لغو کنم.','I have to cancel the appointment.'],['می‌توانیم آن را عقب بیندازیم؟','Can we postpone it?']]}
+]}
+);
+
+/* مرحله ۳–۴: واحدهای موقعیتی و گرامر گذشته */
+DATA.push(
+{ t:'سفر هوایی', d:'فرودگاه، پرواز و چک‌این', ic:'✈️', L:[
+ {t:'فرودگاه', v:[['فرودگاه','airport'],['پرواز','flight'],['بلیط','ticket'],['گذرنامه','passport'],['ویزا','visa'],['گیت','gate'],['هواپیما','plane'],['خلبان','pilot']],
+  s:[['پرواز من ساعت هشت است.','My flight is at eight.'],['گذرنامه‌ات را نشان بده.','Show me your passport.']]},
+ {t:'چک‌این', v:[['چک‌این کردن','check in'],['چمدان','suitcase'],['وزن','weight'],['کارت سوار شدن','boarding pass'],['صندلی','seat'],['پنجره‌ای','window seat'],['راهرو','aisle'],['تأخیر','delay']],
+  s:[['می‌خواهم چمدانم را چک کنم.','I want to check my suitcase.'],['صندلی کنار پنجره می‌خواهم.','I want a window seat.']]},
+ {t:'پرواز و امنیت', v:[['امنیت','security'],['کمربند ایمنی','seat belt'],['فرود آمدن','land'],['برخاستن','take off'],['کیف دستی','carry-on bag'],['مایعات','liquids'],['اعلام کردن','announce'],['خدمه‌ی پرواز','crew']],
+  s:[['لطفاً کمربندتان را ببندید.','Please fasten your seat belts.'],['هواپیما ده دقیقه دیگر فرود می‌آید.','The plane lands in ten minutes.']]},
+ {t:'مشکلات سفر', v:[['گم شدن','lost'],['تأخیر داشتن','be delayed'],['لغو شدن','be cancelled'],['گذرنامه‌ی گم‌شده','lost passport'],['کمک کردن','assist'],['بیمه','insurance'],['رزرو','booking'],['تغییر دادن','rebook']],
+  s:[['پرواز من به تأخیر افتاد.','My flight has been delayed.'],['می‌توانید پرواز را تغییر دهید؟','Can you rebook my flight?']]},
+ {t:'گمرک و ورود', v:[['گمرک','customs'],['اعلام کردن','declare'],['کالا','goods'],['مهر زدن','stamp'],['صف','queue'],['مرز','border'],['اقامت','stay'],['هدف سفر','purpose']],
+  s:[['چیزی برای اعلام دارید؟','Do you have anything to declare?'],['هدف سفر من گردشگری است.','The purpose of my trip is tourism.']]}
+]},
+{ t:'هتل و رستوران', d:'رزرو، سفارش غذا و خدمات', ic:'🏨', L:[
+ {t:'رزرو هتل', v:[['هتل','hotel'],['اتاق','room'],['رزرو کردن','reserve'],['شب','night'],['تخت دو نفره','double bed'],['صبحانه','breakfast'],['کلید','key'],['پذیرش','reception']],
+  s:[['می‌خواهم یک اتاق رزرو کنم.','I would like to reserve a room.'],['صبحانه شامل قیمت است؟','Is breakfast included?']]},
+ {t:'مشکلات هتل', v:[['کار نکردن','not working'],['گرم','hot'],['سرد','cold'],['دوش','shower'],['آب گرم','hot water'],['تعمیر کردن','fix'],['شکایت','complaint'],['تمیز کردن اتاق','room service']],
+  s:[['آب گرم کار نمی‌کند.','The hot water is not working.'],['لطفاً اتاق را تمیز کنید.','Please clean the room.']]},
+ {t:'سفارش غذا', v:[['منو','menu'],['سفارش دادن','order'],['پیش‌غذا','starter'],['دسر','dessert'],['نوشیدنی','drink'],['صورت‌حساب','bill'],['پیشنهاد آشپز','chef special'],['بدون','without']],
+  s:[['منو را لطفاً.','The menu, please.'],['صورت‌حساب را بیاورید.','Could we have the bill?']]},
+ {t:'ترجیحات غذایی', v:[['گیاهخوار','vegetarian'],['حساسیت','allergy'],['تند','spicy'],['شیرین','sweet'],['نمک','salt'],['گوشت','meat'],['مرغ','chicken'],['ماهی','fish']],
+  s:[['من حساسیت به بادام دارم.','I have an allergy to nuts.'],['این غذا خیلی تند است.','This food is very spicy.']]},
+ {t:'پرداخت و انعام', v:[['پرداخت کردن','pay'],['نقدی','in cash'],['کارت','card'],['انعام','tip'],['رسید','receipt'],['تخفیف','discount'],['جمع کل','total'],['تغییر','change']],
+  s:[['با کارت می‌توانم پرداخت کنم؟','Can I pay by card?'],['رسید لطفاً.','A receipt, please.']]}
+]},
+{ t:'گرامر: گذشته ساده', d:'کارهای انجام‌شده در گذشته', ic:'⏪', L:[
+ {t:'گذشته‌ی to be', v:[['بودم','I was'],['بودی','you were'],['بود (او)','he was'],['بودیم','we were'],['بودند','they were'],['نبودم','I was not'],['آیا بودی؟','were you'],['دیروز بودم','I was yesterday']],
+  s:[['دیروز خانه بودم.','I was at home yesterday.'],['آنها در مدرسه نبودند.','They were not at school.']]},
+ {t:'گذشته‌ی منظم', v:[['کار کردم','I worked'],['زندگی کردم','I lived'],['خواستم','I wanted'],['تمام کردم','I finished'],['گوش دادم','I listened'],['دوست داشتم','I liked'],['کمک کردم','I helped'],['بازی کردم','I played']],
+  s:[['دیروز کار کردم.','I worked yesterday.'],['هفته‌ی پیش فیلم دیدم.','I watched a film last week.']]},
+ {t:'گذشته‌ی نامنظم', v:[['رفتم','I went'],['دیدم','I saw'],['خوردم','I ate'],['نوشیدم','I drank'],['گرفتم','I took'],['نوشتم','I wrote'],['آمدم','I came'],['دادم','I gave']],
+  s:[['دیروز به سینما رفتم.','I went to the cinema yesterday.'],['نامه‌ای نوشتم.','I wrote a letter.']]},
+ {t:'منفی و سؤالی گذشته', v:[['نرفتم','I did not go'],['ندیدم','I did not see'],['آیا رفتی؟','Did you go?'],['آیا دیدی؟','Did you see?'],['چه خوردی؟','What did you eat?'],['کجا بودی؟','Where were you?'],['چرا نیامدی؟','Why did you not come?'],['کی رسیدی؟','When did you arrive?']],
+  s:[['او دیروز نیامد.','He did not come yesterday.'],['دیشب چه کار کردی؟','What did you do last night?']]},
+ {t:'عبارت‌های زمان گذشته', v:[['دیروز','yesterday'],['هفته‌ی پیش','last week'],['ماه گذشته','last month'],['سال پیش','last year'],['دو روز پیش','two days ago'],['یک ساعت پیش','an hour ago'],['قبلاً','before'],['آن موقع','then']],
+  s:[['سال پیش به ژاپن سفر کردم.','I travelled to Japan last year.'],['یک ساعت پیش رسیدیم.','We arrived an hour ago.']]}
+]}
+);
+
+/* مرحله ۷–۸ (B2): واحدهای IELTS و بحث */
+DATA.push(
+{ t:'بحث و استدلال (B2)', d:'نظر دادن، موافقت و مخالفت در بحث', ic:'💬', L:[
+ {t:'ابراز نظر', v:[['به نظر من','in my opinion'],['از دیدگاه من','from my perspective'],['معتقدم','I believe'],['به گمان من','I suppose'],['واضح است که','it is clear that'],['شک ندارم که','I am convinced that'],['به نظر می‌رسد','it seems that'],['از نظر من','as far as I am concerned']],
+  s:[['به نظر من این ایده خوب است.','In my opinion, this idea is good.'],['معتقدم ما باید بیشتر تلاش کنیم.','I believe we should try harder.']]},
+ {t:'موافقت و مخالفت', v:[['کاملاً موافقم','I completely agree'],['تا حدی موافقم','I partly agree'],['مخالفم','I disagree'],['کاملاً مخالفم','I strongly disagree'],['حق با توست','you are right'],['منظورت را می‌فهمم','I see your point'],['با این نظر مخالفم','I do not share this view'],['این درست نیست','that is not true']],
+  s:[['کاملاً موافقم که آموزش مهم است.','I completely agree that education is important.'],['با این نظر مخالفم.','I do not share this view.']]},
+ {t:'مثال و توضیح', v:[['برای مثال','for example'],['مانند','such as'],['یعنی','that is'],['به عبارت دیگر','in other words'],['به طور خاص','in particular'],['از جمله','including'],['مثلاً','for instance'],['به همین دلیل','for this reason']],
+  s:[['برای مثال، ورزش سلامت را بهتر می‌کند.','For example, sport improves health.'],['به همین دلیل زودتر آمدم.','For this reason, I came earlier.']]},
+ {t:'ارتباط دادن ایده‌ها', v:[['علاوه بر این','in addition'],['از طرف دیگر','on the other hand'],['با این حال','however'],['بنابراین','therefore'],['در نتیجه','as a result'],['اگرچه','although'],['به دلیل','because of'],['اولاً','firstly']],
+  s:[['با این حال، هزینه زیاد است.','However, the cost is high.'],['در نتیجه، ترافیک کم شد.','As a result, traffic decreased.']]},
+ {t:'نتیجه‌گیری', v:[['در مجموع','overall'],['به طور خلاصه','in short'],['در پایان','in conclusion'],['نتیجه می‌گیرم','I conclude'],['با توجه به موارد بالا','considering the above'],['به هر حال','anyway'],['بنابراین می‌توان گفت','therefore it can be said'],['به عنوان جمع‌بندی','to sum up']],
+  s:[['در مجموع، این طرح مفید است.','Overall, this plan is useful.'],['به طور خلاصه، ما موافقیم.','In short, we agree.']]}
+]},
+{ t:'تجربه و خاطرات (B2)', d:'تعریف تجربه‌های گذشته با جزئیات', ic:'📖', L:[
+ {t:'توصیف تجربه', v:[['تجربه','experience'],['خاطره','memory'],['به یاد آوردن','remember'],['فراموش کردن','forget'],['احساس کردن','feel'],['شگفت‌انگیز','amazing'],['ناامید کننده','disappointing'],['هیجان‌انگیز','exciting']],
+  s:[['آن تجربه خیلی هیجان‌انگیز بود.','That experience was very exciting.'],['هنوز آن خاطره را به یاد دارم.','I still remember that memory.']]},
+ {t:'توالی رویدادها', v:[['ابتدا','at first'],['سپس','then'],['بعد از آن','after that'],['در نهایت','finally'],['در همان زمان','at the same time'],['قبل از آن','before that'],['بعد از چند ساعت','a few hours later'],['ناگهان','suddenly']],
+  s:[['ابتدا خسته بودم، سپس خوابیدم.','At first I was tired, then I slept.'],['ناگهان باران شروع شد.','Suddenly it started to rain.']]},
+ {t:'گرامر: گذشته کامل', v:[['رفته بودم','I had gone'],['دیده بودم','I had seen'],['خورده بودم','I had eaten'],['تمام کرده بودم','I had finished'],['قبل از رسیدن من','before I arrived'],['هنوز نرسیده بود','had not arrived yet'],['آیا تمام کرده بودی؟','had you finished?'],['آن موقع رفته بود','she had left by then']],
+  s:[['وقتی رسیدم، او رفته بود.','When I arrived, she had left.'],['قبل از خواب، کتاب را تمام کرده بودم.','I had finished the book before sleeping.']]},
+ {t:'احساس در خاطره', v:[['خوشحال','happy'],['نگران','worried'],['شرمنده','embarrassed'],['عصبانی','angry'],['آرام','calm'],['متعجب','surprised'],['ترسیده','scared'],['دلتنگ','homesick']],
+  s:[['آن روز خیلی نگران بودم.','I was very worried that day.'],['از دیدن او متعجب شدم.','I was surprised to see him.']]},
+ {t:'قضاوت درباره تجربه', v:[['ارزش داشت','was worth it'],['بی‌فایده بود','was useless'],['آموزنده بود','was educational'],['خسته‌کننده بود','was boring'],['دفعه‌ی بعد','next time'],['توصیه می‌کنم','I recommend'],['یاد گرفتم','I learned'],['تغییر داد','changed']],
+  s:[['آن سفر ارزشش را داشت.','That trip was worth it.'],['این تجربه مرا تغییر داد.','This experience changed me.']]}
+]}
+);
+
+/* مرحله ۸ (B2): محیط کار و مصاحبه */
+DATA.push(
+{ t:'محیط کار و مصاحبه (B2)', d:'مصاحبه‌ی شغلی و گزارش کار', ic:'💼', L:[
+ {t:'معرفی شغلی', v:[['تجربه‌ی کاری','work experience'],['مهارت','skill'],['مسئولیت','responsibility'],['حقوق','salary'],['استخدام کردن','hire'],['رزومه','résumé'],['مدرک','qualification'],['همکار','colleague']],
+  s:[['من پنج سال تجربه‌ی کاری دارم.','I have five years of work experience.'],['مهارت اصلی من ارتباط با مشتری است.','My main skill is communicating with customers.']]},
+ {t:'سؤال‌های مصاحبه', v:[['نقطه‌ی قوت','strength'],['نقطه‌ی ضعف','weakness'],['هدف شغلی','career goal'],['چرا این شغل؟','why this job?'],['مدیر','manager'],['تیم','team'],['انگیزه','motivation'],['انعطاف‌پذیر','flexible']],
+  s:[['نقطه‌ی قوت من کار تیمی است.','My strength is teamwork.'],['من انگیزه‌ی زیادی برای یادگیری دارم.','I have a lot of motivation to learn.']]},
+ {t:'وظایف و گزارش کار', v:[['جلسه','meeting'],['گزارش','report'],['مهلت','deadline'],['برنامه‌ریزی کردن','plan'],['هماهنگ کردن','coordinate'],['پیشرفت','progress'],['بودجه','budget'],['ارائه دادن','present']],
+  s:[['مهلت گزارش فردا است.','The deadline for the report is tomorrow.'],['جلسه را به هفته‌ی بعد منتقل کنیم.','Let us move the meeting to next week.']]},
+ {t:'مذاکره و تصمیم', v:[['پیشنهاد','offer'],['قبول کردن','accept'],['رد کردن','reject'],['شرایط','terms'],['امتیاز دادن','compromise'],['توافق کردن','agree'],['تأیید کردن','approve'],['پیگیری کردن','follow up']],
+  s:[['ما پیشنهاد شما را قبول می‌کنیم.','We accept your offer.'],['لطفاً هفته‌ی بعد پیگیری کنید.','Please follow up next week.']]},
+ {t:'ایمیل کاری', v:[['با سلام','Dear'],['پیوست','attachment'],['پاسخ دادن','reply'],['درخواست','request'],['پیشاپیش متشکرم','thanks in advance'],['با احترام','best regards'],['ارسال کردن','send'],['به‌روزرسانی','update']],
+  s:[['فایل پیوست را ببینید.','Please see the attached file.'],['از پاسخ شما متشکرم.','Thank you for your reply.']]}
+]}
+);
+
+/* واحدهای جدید مرحله ۱ و ۲ (هم‌ترازی با دولینگو) */
+DATA.push(
+{ t:'نوشیدنی و کشورها', d:'سفارش نوشیدنی، ملیت و محل تولد', ic:'☕', L:[
+ {t:'نوشیدنی‌ها', v:[['آب','water'],['چای','tea'],['قهوه','coffee'],['شیر','milk'],['آب‌میوه','juice'],['نوشابه','soda'],['شکر','sugar'],['یخ','ice']],
+  s:[['یک چای می‌خواهم.','I would like a tea.'],['آب‌میوه دارید؟','Do you have juice?']]},
+ {t:'کشورها', v:[['کشور','country'],['آلمان','Germany'],['فرانسه','France'],['اسپانیا','Spain'],['چین','China'],['ژاپن','Japan'],['ترکیه','Turkey'],['آمریکا','America']],
+  s:[['من از ایران هستم.','I am from Iran.'],['او از اسپانیا است.','She is from Spain.']]},
+ {t:'ملیت‌ها', v:[['ایرانی','Iranian'],['آلمانی','German'],['فرانسوی','French'],['اسپانیایی','Spanish'],['چینی','Chinese'],['ژاپنی','Japanese'],['ترک','Turkish'],['آمریکایی','American']],
+  s:[['او آلمانی است.','He is German.'],['ما ایرانی هستیم.','We are Iranian.']]},
+ {t:'زبان‌ها', v:[['زبان','language'],['انگلیسی','English'],['فارسی','Persian'],['عربی','Arabic'],['صحبت کردن','speak'],['فهمیدن','understand'],['یاد گرفتن','learn'],['کمی','a little']],
+  s:[['من فارسی صحبت می‌کنم.','I speak Persian.'],['کمی انگلیسی بلدم.','I know a little English.']]},
+ {t:'محل زندگی', v:[['شهر','city'],['روستا','village'],['خیابان','street'],['آدرس','address'],['همسایه','neighbor'],['اهل','from'],['متولد شدن','be born'],['بزرگ شدن','grow up']],
+  s:[['من در تهران زندگی می‌کنم.','I live in Tehran.'],['او در یک روستا بزرگ شد.','He grew up in a village.']]}
+]},
+{ t:'گرامر: فعل to be', d:'am, is, are در جمله‌های مثبت، منفی و سؤالی', ic:'🧩', L:[
+ {t:'I am / You are', v:[['من هستم','I am'],['تو هستی','you are'],['ما هستیم','we are'],['شما هستید','you are'],['آنها هستند','they are'],['من خوشحالم','I am happy'],['ما دانشجو هستیم','we are students'],['آنها دوست هستند','they are friends']],
+  s:[['من خسته‌ام.','I am tired.'],['ما در خانه هستیم.','We are at home.']]},
+ {t:'He is / She is / It is', v:[['او (مرد) هست','he is'],['او (زن) هست','she is'],['آن هست','it is'],['او معلم است','he is a teacher'],['او پزشک است','she is a doctor'],['هوا سرد است','it is cold'],['سگ بزرگ است','the dog is big'],['کتاب روی میز است','the book is on the table']],
+  s:[['او در دفتر است.','He is in the office.'],['هوا امروز گرم است.','It is hot today.']]},
+ {t:'جمله منفی', v:[['من نیستم','I am not'],['او نیست','he is not'],['ما نیستیم','we are not'],['آنها نیستند','they are not'],['خسته نیستم','I am not tired'],['او گرسنه نیست','she is not hungry'],['اینجا نیستیم','we are not here'],['آن گران نیست','it is not expensive']],
+  s:[['من دانشجو نیستم.','I am not a student.'],['آنها اینجا نیستند.','They are not here.']]},
+ {t:'سؤال با to be', v:[['آیا تو خوبی؟','Are you OK?'],['آیا او اینجاست؟','Is he here?'],['آیا آنها دوستند؟','Are they friends?'],['من کجا هستم؟','Where am I?'],['او کیست؟','Who is he?'],['این چیست؟','What is this?'],['حالت چطور است؟','How are you?'],['ساعت چند است؟','What time is it?']],
+  s:[['آیا شما از ایران هستید؟','Are you from Iran?'],['اسم تو چیست؟','What is your name?']]},
+ {t:'این و آن', v:[['این','this'],['آن','that'],['اینها','these'],['آنها','those'],['این یک کتاب است','this is a book'],['آن یک ماشین است','that is a car'],['اینها سیب هستند','these are apples'],['آنها گربه هستند','those are cats']],
+  s:[['این خانه من است.','This is my house.'],['آنها کفش‌های تو هستند.','Those are your shoes.']]}
+]}
+);
+
+/* ترتیب نهایی بر اساس مسیر دولینگو: مقدمه ← A1 ← A2 ← B1 ← B2 */
+(function () {
+  const order = ['سلام و آشنایی','نوشیدنی و کشورها','دنیای اطراف','گرامر: فعل to be','خرید و غذا','زندگی روزمره','گرامر: حال ساده و استمراری','کارهای خانه','شهر و خدمات',
+    'there is / there are و مقایسه','سفر و جابجایی','سفر هوایی','هتل و رستوران','حوادث و پلیس','کار و تحصیل','برنامه و دعوت','گرامر: گذشته ساده','احساسات و توصیف','درک مطلب','گرامر: گذشته (B1)','سلامت و بدن (B1)',
+    'مکالمه‌ی حرفه‌ای','گرامر: حال کامل و آینده (B1)','تکنولوژی (B1)','محیط زیست (B1)',
+    'گرامر: شرطی، مجهول، وجهی (B2)','آموزش و جامعه (B2)','اقتصاد و کار (B2)','گرامر و پیوندها (B2)','واژگان آکادمیک (B2)','بحث و استدلال (B2)','تجربه و خاطرات (B2)','محیط کار و مصاحبه (B2)'];
+  const sorted = order.map(t => DATA.find(u => u.t === t));
+  if (sorted.some(u => !u) || sorted.length !== DATA.length) throw new Error('DATA order mismatch');
+  DATA.splice(0, DATA.length, ...sorted);
+})();
+/* آیکن‌های SVG واژه‌ها – رنگ اصلی آبی (#5db7f5)، تأکید سبز (#5db7f5) و زرد (#5db7f5) */
+const SVGI = (b) => `<svg viewBox="0 0 64 64" width="100%" height="100%" fill="none" stroke="#5db7f5" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${b}</svg>`;
+const ICO = {
+  question: SVGI('<circle cx="32" cy="32" r="22" fill="#5db7f533"/><path d="M24 25a8 8 0 1 1 11 7c-2 1-3 3-3 5v2"/><circle cx="32" cy="46" r="1.5"/>'),
+  briefcase: SVGI('<rect x="8" y="20" width="48" height="32" rx="5" fill="#5db7f533"/><path d="M24 20v-6h16v6M8 32h48"/>'),
+  face: SVGI('<circle cx="32" cy="32" r="22" fill="#5db7f533"/><circle cx="24" cy="26" r="2"/><circle cx="40" cy="26" r="2"/><path d="M22 40c4 5 16 5 20 0"/>'),
+  pill: SVGI('<rect x="10" y="24" width="44" height="16" rx="8" transform="rotate(-35 32 32)" fill="#5db7f533"/><path d="M28 22l12 20"/>'),
+  megaphone: SVGI('<path d="M10 26v12h8l20 12V14L18 26z" fill="#5db7f533"/><path d="M48 24c4 2 4 14 0 16"/>'),
+  chart: SVGI('<path d="M10 54h44M14 46V34M26 46V22M38 46V30M50 46V14"/>'),
+  num: SVGI('<path d="M24 10L18 54M46 10L40 54M10 24h46M8 40h46"/>'),
+  palette: SVGI('<path d="M32 10C17 10 8 20 8 32s9 22 20 22c4 0 5-3 4-6s0-6 4-6h6c8 0 14-5 14-12C56 19 46 10 32 10z" fill="#5db7f533"/><circle cx="20" cy="28" r="4"/><circle cx="32" cy="20" r="4"/><circle cx="44" cy="28" r="4"/>'),
+  globe: SVGI('<circle cx="32" cy="32" r="22" fill="#5db7f533"/><ellipse cx="32" cy="32" rx="9" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/>'),
+  body: SVGI('<circle cx="32" cy="14" r="7"/><path d="M22 26h20l-3 20h-4v14h-6V46h-4v14h-6V46h-4l-3-20z" fill="#5db7f533"/><path d="M22 28l-8 14M42 28l8 14"/>'),
+  utensils: SVGI('<path d="M18 8v16a6 6 0 0 0 12 0V8M24 8v48"/><path d="M42 8c-5 6-5 16 0 20v28"/>'),
+  review: SVGI('<path d="M14 32a18 18 0 0 1 31-12.5L50 24"/><path d="M50 12v12H38"/><path d="M50 32a18 18 0 0 1-31 12.5L14 40"/><path d="M14 52V40h12"/><path d="M27 27l10 10M37 27l-10 10" stroke="#5db7f5"/>'),
+  hand: SVGI('<path d="M22 36V16a4 4 0 0 1 8 0v14M30 30V12a4 4 0 0 1 8 0v18M38 30V16a4 4 0 0 1 8 0v20c0 10-6 16-14 16-6 0-9-3-12-8l-6-10a4 4 0 0 1 6-5l4 5"/>'),
+  water: SVGI('<path d="M32 8C24 22 18 30 18 40a14 14 0 0 0 28 0c0-10-6-18-14-32z" fill="#5db7f533"/><path d="M26 42a6 6 0 0 0 6 6" stroke="#5db7f5"/>'),
+  cup: SVGI('<path d="M14 24h30v14a14 14 0 0 1-28 0V24z" fill="#5db7f533"/><path d="M44 28h4a6 6 0 0 1 0 12h-4"/><path d="M22 10c-3 4 3 6 0 10M32 10c-3 4 3 6 0 10" stroke="#5db7f5"/>'),
+  apple: SVGI('<path d="M32 20c-6-4-16-2-16 12 0 12 8 22 16 20 2 0 4-1 6 0 8 2 16-8 16-20 0-14-10-16-16-12z" fill="#5db7f533"/><path d="M32 18c0-5 2-8 5-9" stroke="#5db7f5"/>'),
+  orange: SVGI('<circle cx="32" cy="34" r="20" fill="#5db7f533" stroke="#5db7f5"/><path d="M32 14c0-4 2-6 5-7" stroke="#5db7f5"/><path d="M32 14c-3-1-5 1-5 3" stroke="#5db7f5"/>'),
+  bread: SVGI('<path d="M10 40c0-12 8-20 22-20s22 8 22 20v4H10z" fill="#5db7f533" stroke="#5db7f5"/><path d="M20 30l4 4M32 26l4 4M42 30l4 4"/>'),
+  fish: SVGI('<ellipse cx="30" cy="32" rx="18" ry="11"/><path d="M48 32l10-9v18z" fill="#5db7f533"/><circle cx="22" cy="30" r="2" fill="#5db7f5"/>'),
+  cat: SVGI('<path d="M14 26l4-14 10 8h8l10-8 4 14c2 6 0 14-8 18-6 3-20 3-26 0-8-4-10-12-8-18z" fill="#5db7f533" stroke="#5db7f5"/><circle cx="25" cy="34" r="2" fill="#5db7f5"/><circle cx="39" cy="34" r="2" fill="#5db7f5"/>'),
+  dog: SVGI('<path d="M20 22c-8 2-8 16-4 22 4 4 8 2 10-2M44 22c8 2 8 16 4 22-4 4-8 2-10-2"/><ellipse cx="32" cy="30" rx="12" ry="14" fill="#5db7f533"/><circle cx="27" cy="28" r="2" fill="#5db7f5"/><circle cx="37" cy="28" r="2" fill="#5db7f5"/><path d="M30 36h4" stroke="#5db7f5"/>'),
+  bird: SVGI('<path d="M10 34c8-14 22-18 32-10l10-4-4 10c0 14-12 22-26 18l-6 6-2-8c-2-4-4-8-4-12z" fill="#5db7f533"/><circle cx="40" cy="28" r="2" fill="#5db7f5"/>'),
+  house: SVGI('<path d="M10 30L32 12l22 18" stroke="#5db7f5"/><path d="M16 28v24h32V28"/><rect x="28" y="38" width="8" height="14" fill="#5db7f533"/>'),
+  door: SVGI('<rect x="18" y="10" width="28" height="46" rx="2" fill="#5db7f533"/><circle cx="40" cy="34" r="2" fill="#5db7f5" stroke="#5db7f5"/>'),
+  bed: SVGI('<path d="M8 44V22M8 36h48v8M56 36V30a6 6 0 0 0-6-6H30v12"/><circle cx="18" cy="30" r="4" fill="#5db7f533" stroke="#5db7f5"/>'),
+  car: SVGI('<path d="M8 40v-8l8-10h26l10 10v8z" fill="#5db7f533"/><circle cx="18" cy="42" r="6" fill="none" stroke="#5db7f5"/><circle cx="46" cy="42" r="6" fill="none" stroke="#5db7f5"/>'),
+  bus: SVGI('<rect x="10" y="12" width="44" height="34" rx="6" fill="#5db7f533" stroke="#5db7f5"/><path d="M10 30h44"/><circle cx="20" cy="50" r="4" fill="none" stroke="#5db7f5"/><circle cx="44" cy="50" r="4" fill="none" stroke="#5db7f5"/>'),
+  train: SVGI('<rect x="14" y="10" width="36" height="36" rx="8" fill="#5db7f533"/><path d="M14 30h36M22 46l-6 8M42 46l6 8"/><circle cx="24" cy="38" r="2" fill="#5db7f5" stroke="none"/><circle cx="40" cy="38" r="2" fill="#5db7f5" stroke="none"/>'),
+  plane: SVGI('<path d="M8 32l48-8-14 24-8-6-8 8-2-14-16-4z" fill="#5db7f533"/>'),
+  book: SVGI('<path d="M12 14c8-2 14 0 20 4 6-4 12-6 20-4v34c-8-2-14 0-20 4-6-4-12-6-20-4z" fill="#5db7f533"/><path d="M32 18v34"/>'),
+  pen: SVGI('<path d="M44 10l10 10L26 48l-14 4 4-14z" fill="#5db7f533" stroke="#5db7f5"/><path d="M36 18l10 10"/>'),
+  phone: SVGI('<rect x="20" y="8" width="24" height="48" rx="5" fill="#5db7f533"/><path d="M28 48h8" stroke="#5db7f5"/>'),
+  computer: SVGI('<rect x="10" y="12" width="44" height="30" rx="3" fill="#5db7f533"/><path d="M24 52h16M32 42v10"/>'),
+  school: SVGI('<path d="M8 28L32 14l24 14z" fill="#5db7f533" stroke="#5db7f5"/><path d="M14 28v22h36V28"/><path d="M28 50V38h8v12"/>'),
+  sun: SVGI('<circle cx="32" cy="32" r="10" fill="#5db7f533" stroke="#5db7f5"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l6 6M43 43l6 6M15 49l6-6M43 21l6-6"/>'),
+  moon: SVGI('<path d="M40 12a22 22 0 1 0 12 36A18 18 0 0 1 40 12z" fill="#5db7f533" stroke="#5db7f5"/>'),
+  star: SVGI('<path d="M32 8l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" fill="#5db7f533" stroke="#5db7f5"/>'),
+  tree: SVGI('<path d="M32 60V40"/><circle cx="32" cy="26" r="16" fill="#5db7f533" stroke="#5db7f5"/>'),
+  flower: SVGI('<circle cx="32" cy="24" r="6" fill="#5db7f5" stroke="#5db7f5"/><circle cx="32" cy="14" r="6" fill="#5db7f533" stroke="#5db7f5"/><circle cx="42" cy="24" r="6" fill="#5db7f533" stroke="#5db7f5"/><circle cx="22" cy="24" r="6" fill="#5db7f533" stroke="#5db7f5"/><circle cx="32" cy="34" r="6" fill="#5db7f533" stroke="#5db7f5"/><path d="M32 40v20" stroke="#5db7f5"/>'),
+  rain: SVGI('<path d="M16 36a12 12 0 0 1 4-23 16 16 0 0 1 30 4 10 10 0 0 1 2 19z" fill="#5db7f533"/><path d="M22 46l-3 8M32 46l-3 8M42 46l-3 8"/>'),
+  snow: SVGI('<path d="M32 8v48M12 20l40 24M52 20L12 44"/><path d="M26 12l6 4 6-4M26 52l6-4 6 4" stroke="#5db7f5"/>'),
+  heart: SVGI('<path d="M32 54C12 40 8 30 8 22a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 8-4 18-24 32z" fill="#5db7f533" stroke="#5db7f5"/>'),
+  money: SVGI('<rect x="8" y="18" width="48" height="28" rx="4" fill="#5db7f533" stroke="#5db7f5"/><circle cx="32" cy="32" r="7" stroke="#5db7f5"/>'),
+  clock: SVGI('<circle cx="32" cy="32" r="22" fill="#5db7f533" stroke="#5db7f5"/><path d="M32 18v14l9 6"/>'),
+  calendar: SVGI('<rect x="10" y="14" width="44" height="40" rx="4" fill="#5db7f533"/><path d="M10 26h44M22 8v10M42 8v10"/><circle cx="32" cy="40" r="3" fill="#5db7f5" stroke="none"/>'),
+  shop: SVGI('<path d="M10 24l4-12h36l4 12z" fill="#5db7f533" stroke="#5db7f5"/><path d="M12 24v28h40V24"/><path d="M26 52V38h12v14"/>'),
+  hospital: SVGI('<rect x="12" y="14" width="40" height="40" rx="4" fill="#5db7f522" stroke="#5db7f5"/><path d="M32 22v20M22 32h20"/>'),
+  sea: SVGI('<path d="M8 28c6-6 10-6 16 0s10 6 16 0 10-6 16 0M8 42c6-6 10-6 16 0s10 6 16 0 10-6 16 0" stroke="#5db7f5"/><path d="M8 54c6-6 10-6 16 0s10 6 16 0 10-6 16 0" stroke="#5db7f5"/>'),
+  mountain: SVGI('<path d="M6 52L24 22l10 16 6-8 18 22z" fill="#5db7f533" stroke="#5db7f5"/><path d="M24 22l-4 6h8z" fill="none"/>'),
+  city: SVGI('<rect x="10" y="22" width="14" height="30" fill="#5db7f533"/><rect x="26" y="12" width="12" height="40" fill="#5db7f533" stroke="#5db7f5"/><rect x="40" y="28" width="14" height="24" fill="#5db7f533"/>'),
+  family: SVGI('<circle cx="22" cy="20" r="6"/><circle cx="42" cy="20" r="6"/><circle cx="32" cy="32" r="7" fill="#5db7f533" stroke="#5db7f5"/><path d="M12 54c0-8 4-12 10-12s10 4 10 12M32 56c0-8 4-12 10-12s10 4 10 12M44 54" /><path d="M22 54c0-6 4-10 10-10"/>'),
+  person: SVGI('<circle cx="32" cy="20" r="10" fill="#5db7f533"/><path d="M14 56c0-12 8-20 18-20s18 8 18 20z" fill="#5db7f533"/>'),
+  doctor: SVGI('<circle cx="32" cy="20" r="10" fill="#5db7f533"/><path d="M14 56c0-12 8-20 18-20s18 8 18 20z" fill="#5db7f533"/><path d="M32 40v10M27 45h10" stroke="#5db7f5"/>'),
+  shoe: SVGI('<path d="M10 40v-16h14l8 8 20 4v4z" fill="#5db7f533" stroke="#5db7f5"/><path d="M10 44h44"/>'),
+  shirt: SVGI('<path d="M22 12l-12 8 6 12 6-2v26h24V30l6 2 6-12-12-8c-2 6-16 6-20 0z" fill="#5db7f533"/>'),
+  ball: SVGI('<circle cx="32" cy="32" r="20" fill="#5db7f533" stroke="#5db7f5"/><path d="M32 12v40M12 32h40" stroke="#5db7f5" stroke-width="2"/>'),
+  food: SVGI('<path d="M12 30h40c0 12-8 20-20 20S12 42 12 30z" fill="#5db7f533" stroke="#5db7f5"/><path d="M20 22c2-6 6-8 8-8M32 22c2-6 6-8 8-8" stroke="#5db7f5"/>'),
+  drink: SVGI('<path d="M20 16h24l-4 40H24z" fill="#5db7f533"/><path d="M26 8l4 8M36 8l-2 8" stroke="#5db7f5"/>'),
+  chat: SVGI('<path d="M10 16h44v28H28l-10 8v-8h-8z" fill="#5db7f533"/><path d="M20 26h24M20 34h16"/>'),
+  phone2: SVGI('<path d="M14 10h12l4 12-6 4c2 6 6 10 12 12l4-6 12 4v12c0 4-4 6-8 6C26 58 6 38 8 18c0-4 2-8 6-8z" fill="#5db7f533"/>'),
+  generic: SVGI('<rect x="12" y="10" width="40" height="44" rx="6" fill="#5db7f533"/><path d="M22 24h20M22 34h20M22 44h12" stroke="#5db7f5"/>')
+};
+const WMAP = [
+  [/^(hello|hi|hey|good morning|good night|good|goodbye|bye|welcome)/, 'hand'],
+  [/\b(water)\b/, 'water'], [/\b(tea|coffee)\b/, 'cup'], [/\b(juice|drink|soda|milk)\b/, 'drink'],
+  [/\b(apple)\b/, 'apple'], [/\b(orange|lemon|banana|fruit)\b/, 'orange'], [/\b(bread|rice|food|soup|pizza|meal|cake|egg|chicken|cheese|grocer|supermarket|vegetable|meat)\b/, 'food'],
+  [/\b(fish)\b/, 'fish'], [/\b(cat)\b/, 'cat'], [/\b(dog)\b/, 'dog'], [/\b(bird)\b/, 'bird'], [/\b(animal|horse|cow|lion)\b/, 'dog'],
+  [/\b(house|home|kitchen|room|flat|apartment)\b/, 'house'], [/\b(door|window)\b/, 'door'], [/\b(bed|hotel)\b/, 'bed'],
+  [/\b(car|taxi|driv|truck)\b/, 'car'], [/\b(bus|station|bus stop)\b/, 'bus'], [/\b(train|metro|subway)\b/, 'train'], [/\b(plane|flight|airport|passport|check-in|boarding|travel|trip|tour)\b/, 'plane'],
+  [/\b(book|read|reading|text|story|library)\b/, 'book'], [/\b(pen|write|writing|pencil|letter|mail)\b/, 'pen'], [/\b(phone|call|mobile)\b/, 'phone'],
+  [/\b(computer|laptop|internet|online|technology|device|app|website)\b/, 'computer'], [/\b(school|university|college|study|class|teacher|student)\b/, 'school'],
+  [/\b(sun|summer|hot|sunny)\b/, 'sun'], [/\b(moon|night)\b/, 'moon'], [/\b(star|famous|great)\b/, 'star'], [/\b(tree|forest|nature|environment|plant)\b/, 'tree'],
+  [/\b(flower|spring)\b/, 'flower'], [/\b(rain|rainy|weather|cloud|storm)\b/, 'rain'], [/\b(snow|winter|cold)\b/, 'snow'],
+  [/\b(love|heart|happy|feel|feelings|emotion|sad|angry|kind)\b/, 'heart'], [/\b(money|price|cost|pay|bank|cash|expensive|cheap|tip)\b/, 'money'],
+  [/\b(time|clock|hour|minute|late|early)\b/, 'clock'], [/\b(day|week|month|date|calendar|schedule|plan|appointment|meeting)\b/, 'calendar'],
+  [/\b(shop|store|market|buy|shopping|mall)\b/, 'shop'], [/\b(hospital|doctor|nurse|sick|health|pain|medicine|illness|ill)\b/, 'hospital'],
+  [/\b(sea|beach|ocean|sail)\b/, 'sea'], [/\b(mountain|hill|climb)\b/, 'mountain'], [/\b(city|town|street|road|building|bank|post office)\b/, 'city'],
+  [/\b(family|mother|father|sister|brother|parent|child|friend|people|wife|husband)\b/, 'family'], [/\b(person|man|woman|boy|girl|he|she|i|you|we|they|name|age)\b/, 'person'],
+  [/\b(shoe|shoes|boot)\b/, 'shoe'], [/\b(shirt|dress|clothes|jacket|wear|coat|hat)\b/, 'shirt'], [/\b(ball|sport|game|play|football|soccer)\b/, 'ball'],
+  [/\b(talk|say|speak|conversation|ask|answer|phrase|expression)\b/, 'chat'],
+  [/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twenty|fifty|hundred|thousand|first|second|third|number)\b/, 'num'],
+  [/\b(red|blue|green|yellow|black|white|pink|purple|brown|gray|grey|color|colour)\b/, 'palette'],
+  [/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday|january|february|march|april|june|july|august|september|october|november|december|today|tomorrow|yesterday)\b/, 'calendar'],
+  [/\b(iran|germany|france|spain|china|japan|turkey|america|england|country|countries|iranian|german|french|spanish|chinese|japanese|turkish|american|language|english|persian|arabic|speak|understand|nationality)\b/, 'globe'],
+  [/\b(head|eye|eyes|foot|feet|nose|mouth|ear|ears|body|leg|arm|tooth|teeth|finger|hair|stomach|shoulder|knee)\b/, 'body'],
+  [/\b(spoon|fork|knife|plate|glass|pot|pan|stove|fridge|oven|vacuum|bucket|broom|sink)\b/, 'utensils'],
+  [/\b(pants|skirt|socks|sock|glasses|beard)\b/, 'shirt'],
+  [/\b(son|daughter|grandmother|grandfather|uncle|aunt|cousin|baby|grandparent)\b/, 'family'],
+  [/\b(left|right|straight|north|south|east|west|direction|map)\b/, 'city'],
+  [/\b(bicycle|bike)\b/, 'car'],
+  [/\b(please|yes|no|sorry|excuse|thank|help|can|will|would|must|might|should|could|may|need|if|unless|otherwise|however|moreover|therefore|despite|whereas|although|while)\b/, 'chat'],
+  [/\b(what|where|when|why|who|how|which|whose|whoever|question|answer)\b/, 'question'],
+  [/\b(work|job|office|boss|colleague|manager|team|company|salary|wage|contract|interview|cv|résumé|resume|applicant|experience|skill|promotion|resign|deadline|project|overtime|employ|engineer|driver|cook|farmer|employee|customer|competitor|production|productivity|coordinate|burnout|career|qualification|responsibility)\b/, 'briefcase'],
+  [/\b(exam|homework|grade|course|degree|curriculum|education|scholarship|literacy|graduate|lesson|practice|learn|study|listen|repeat|explain|analyse|evaluate|demonstrate|describe|compare|conclude|suggest|memory|remember|forget)\b/, 'school'],
+  [/\b(tired|excited|calm|hungry|thirsty|nervous|bored|surprised|worried|proud|afraid|lonely|confused|embarrassed|scared|homesick|amazing|disappointing|exciting|boring|interesting|beautiful|ugly|strong|weakness|strength|frustrated|angry|upset|glad|cheerful|shy|brave|funny|relaxed|stress|anxiety|depression|motivation|concentration|relaxation)\b/, 'face'],
+  [/\b(fever|cough|headache|nausea|wound|prescription|pill|treatment|patient|healthy|diet|exercise|protein|vitamin|overweight|fitness|injure|blood|fracture|rescue|first aid|ambulance|emergency|danger|accident|fall|get hurt|sick|ill|pain|allergy|vegetarian|spicy|sweet)\b/, 'pill'],
+  [/\b(news|media|journalist|advertising|announce|warning|influence|influencer|post|follower|share|comment|content|censorship|campaign|speech|voice|shout|call back|loud|noise)\b/, 'megaphone'],
+  [/\b(data|economy|inflation|unemployment|income|tax|budget|investment|profit|loss|export|import|cost|production|crisis|solution|risk|benefit|advantage|disadvantage|consequence|cause|effect|proportion|increase|decrease|fluctuate|peak|sharp|gradual|overall|statistics|percent|graph|chart|trend|survey|result|total|sum|population|inequality|poverty|housing|migration|urbanisation|infrastructure|traffic|suburb|rural|city|growth)\b/, 'chart'],
+  [/\b(bank|account|card|savings|withdraw|deposit|atm|cash|receipt|discount|total|bill|wallet|pay|price|salary)\b/, 'money'],
+  [/\b(bakery|pharmacy|bookstore|butcher|mall|store|supermarket|grocery|shopping|buy|sell|market)\b/, 'shop'],
+  [/\b(ticket|luggage|gate|seat|aisle|pilot|suitcase|weight|passport|visa|customs|declare|border|security|check|carry-on|liquids|boarding|flight|delay|arrive|depart|reservation|booking|rebook|reserve|tourist|guide|museum|camera|land|crew|queue|lost|found|insurance|assist|airport|travel|trip|tour|journey)\b/, 'plane'],
+  [/\b(key|reception|hotel|bedroom|stay|breakfast|room|sleep|shower|bathroom|hot water|fix|repair|not working|complaint|room service)\b/, 'bed'],
+  [/\b(sofa|carpet|curtain|table|chair|dust|sweep|clean|iron|trash|rubbish|dirty|messy|neat|tidy|wash|laundry|dish|kitchen|stove|vacuum|broom|bucket|wet|dry|empty|full)\b/, 'house'],
+  [/\b(message|email|voicemail|reply|request|dear|attachment|send|letter|package|stamp|receiver|mail|post office|write|note|invite|invitation)\b/, 'pen'],
+  [/\b(screen|keyboard|headphones|install|download|update|connection|password|search|secure|privacy|software|robot|invention|automatic|innovation|error|save|delete|restart|frozen|battery|charger|device|log in|log out|follow|online|website|app|program|digital|artificial intelligence|progress|connect)\b/, 'computer'],
+  [/\b(pollution|recycling|energy|protect|resources|solar|extinct|habitat|environment|climate|global warming|emission|greenhouse|fossil|smoke|toxic|sewage|harm|leaf|soil|plant|garden)\b/, 'tree'],
+  [/\b(river|lake|flood|drought|rain|wind|fog|temperature|humid|storm|glacier|weather|ice|snow)\b/, 'water'],
+  [/\b(desert|island|valley|forest|hill|mountain|nature|travel)\b/, 'mountain'],
+  [/\b(village|neighbor|neighbour|neighbourhood|address|street|village|suburb|bridge|crossroads|park|community|society|culture|tradition)\b/, 'city'],
+  [/\b(morning|afternoon|evening|now|always|usually|often|sometimes|rarely|never|later|soon|recently|regularly|already|yet|since|ago|after|then|before|finally|firstly|anyway|still|ever|right now|at the moment|every day|once|weekend|tomorrow|next week|next year|last week|last month|last year)\b/, 'clock'],
+  [/\b(bag|menu|waiter|order|delicious|salt|oil|sugar|ice|starter|dessert|drink|meal)\b/, 'food'],
+  [/\b(parents|from|this|that|these|those|everyone|myself|together|neat|same|different|similar|more|less|bigger|smaller|cheaper|faster|better|worse|like|on|under|in|between|opposite|behind|near|left|right|straight|north|south|east|west)\b/, 'person'],
+  [/\b(go|eat|take|give|make|find|see|hear|catch|lose|meet|arrive|sleep|brush|learn|wait|turn|wake|went|saw|ate|came|took|gave|wrote|bought|said|made|knew|thought|told|heard|stood|slept|ran|sat|drank|taught|brought|won|lived|worked|played|visited|cleaned)\b/, 'hand'],
+  [/\b(vegetarian|allergy|spicy|sweet)\b/, 'food']
+];
+function wordIcon(en) {
+  const s = (en || '').toLowerCase();
+  for (const [re, k] of WMAP) if (re.test(s)) return ICO[k];
+  return ICO.generic;
+}
+/* آیکن SVG برای عنوان واحدها (همان الگوی آیکن واژه‌ها) */
+const PMAP = [
+  [/سلام|احوال|خداحافظ|تشکر|عذرخواهی|دعوت/, 'hand'], [/معرفی|شخص|توصیف شخص|ظاهر/, 'person'],
+  [/نوشیدنی/, 'drink'], [/خوراکی|غذا|رستوران|سفارش|ترجیحات|آشپزخانه|سوپرمارکت/, 'food'],
+  [/حیوان/, 'dog'], [/خانواده/, 'family'], [/بدن|سلامت|بیماری|پزشک|دکتر|اورژانس|حوادث|تغذیه/, 'hospital'],
+  [/خانه|لوازم|کارهای خانه|تمیز|محل زندگی|هتل|رزرو/, 'house'], [/لباس/, 'shirt'],
+  [/زمان|ساعت|روزهای|ماه|فصل|گذشته|آینده|حال|مدیریت زمان|قرار/, 'clock'],
+  [/خرید|قیمت|پرداخت|بانک|اقتصاد|انعام|کسب/, 'money'], [/وسایل نقلیه|سفر|فرودگاه|پرواز|گمرک|چک|گردشگری|مشکلات سفر/, 'plane'],
+  [/جهت|شهر|ساختمان|مغازه|پستخانه|شهرنشینی|کشورها|محیط/, 'city'], [/طبیعت|آب‌وهوا|آلودگی|حفاظت|گرمایش/, 'tree'],
+  [/دستگاه|اینترنت|شبکه|هوش|فنی|تلفن|دیجیتال/, 'computer'], [/دانشگاه|آموزش|مهارت|زبان|مدرسه|تحصیل|آکادمیک|Writing|Speaking/, 'school'],
+  [/کتاب|خواندن|متن|داستان/, 'book'], [/نامه|ایمیل|پیام/, 'pen'], [/احساس|احساسات|شاد|عشق/, 'heart'],
+  [/شغل|کار|استخدام|مصاحبه|وظایف|مذاکره|اداره/, 'person'], [/ورزش|بازی/, 'ball'],
+  [/اعداد|عدد|رنگ/, 'star'], [/سؤال|پرسش|جمله|گرامر|مجهول|شرطی|وجهی|موصول|نقل|ربط|افعال/, 'chat'], [/پیشنهاد|ایده|مثال|نظر|موافقت/, 'chat'],
+  [/شرطی|نتیجه|توالی/, 'generic']
+];
+function topicIcon(t) {
+  const s = (t || '');
+  for (const [re, k] of PMAP) if (re.test(s)) return ICO[k];
+  return ICO.generic;
+}
+
+/* بازآرایی: هر موضوع = یک واحد تخصصی (۲ درس یادگیری، تمرین جمله، مرور) */
+const TOPIC_IC = {"سلام و احوال‌پرسی": "👋", "معرفی خود": "🙋", "اعداد ۱ تا ۸": "🔢", "اعداد بزرگ‌تر": "💯", "کلمات پرسشی": "❓", "نوشیدنی‌ها": "🥤", "کشورها": "🌍", "ملیت‌ها": "🪪", "زبان‌ها": "🗣️", "محل زندگی": "🏘️", "رنگ‌ها": "🎨", "خانواده": "👪", "خوراکی‌ها": "🍎", "حیوانات": "🐶", "بدن": "🧍", "I am / You are": "🧩", "He is / She is / It is": "🧩", "جمله منفی": "🧩", "سؤال با to be": "🧩", "این و آن": "🧩", "خرید و قیمت": "💰", "در رستوران": "🍽️", "سوپرمارکت": "🛒", "درخواست مؤدبانه": "🙏", "لباس": "👕", "روزهای هفته": "📆", "ماه‌ها و فصل‌ها": "🍂", "کارهای روزانه": "⏰", "خانه": "🏠", "ساعت و زمان": "🕒", "حال ساده: من/تو/ما": "🔄", "حال ساده: او (s)": "🔄", "منفی و سؤالی حال ساده": "🔄", "قیدهای تکرار": "🔁", "حال استمراری": "🔄", "کارهای خانه": "🧹", "آشپزخانه": "🍳", "لوازم خانه": "🧺", "تقسیم کار": "🤝", "تمیز و کثیف": "🧼", "پستخانه": "📮", "بانک": "🏦", "مغازه‌ها": "🏪", "ساختمان‌های شهر": "🏙️", "ساعت کار": "🕘", "there is / there are": "🔎", "حروف اضافه مکان": "📍", "صفت تفضیلی": "⚖️", "صفت عالی": "🥇", "as ... as و تشبیه": "📏", "وسایل نقلیه": "🚌", "جهت‌یابی": "🧭", "هتل": "🛎️", "فرودگاه": "🛫", "گردشگری": "📸", "چک‌این": "🎫", "پرواز و امنیت": "💺", "مشکلات سفر": "🧳", "گمرک و ورود": "🛃", "رزرو هتل": "🛏️", "مشکلات هتل": "🔧", "سفارش غذا": "🧾", "ترجیحات غذایی": "🥗", "پرداخت و انعام": "💳", "کمک خواستن": "🆘", "دزدی": "🦹", "توصیف شخص": "🧑", "چه اتفاقی افتاد؟": "💥", "گم‌شده و پیدا‌شده": "🔍", "شغل‌ها": "👷", "محیط کار": "🏢", "دانشگاه": "🎓", "مهارت‌های زبانی": "📝", "ارتباط": "🤝", "پیشنهاد دادن": "💡", "دعوت": "🎉", "قرار گذاشتن": "📅", "going to / will": "🔮", "تغییر برنامه": "🔁", "گذشته‌ی to be": "⏪", "گذشته‌ی منظم": "⏪", "گذشته‌ی نامنظم": "⏪", "منفی و سؤالی گذشته": "⏪", "عبارت‌های زمان گذشته": "🕰️", "احساسات": "😊", "توصیف ظاهر": "👀", "توصیف اشیا": "🧰", "نظر دادن": "💭", "احساسات ظریف": "🥹", "گذشتهٔ بی‌قاعده ۱": "⏪", "گذشتهٔ بی‌قاعده ۲": "⏪", "گذشتهٔ بی‌قاعده ۳": "⏪", "گذشتهٔ استمراری": "🕰️", "علائم بیماری": "🤒", "پیش دکتر": "🏥", "تغذیه و ورزش": "🏋️", "سلامت روان": "🧘", "حوادث و اورژانس": "🚑", "اصطلاحات روزمره": "🗨️", "موافقت و نظر": "👍", "تشکر و عذرخواهی": "🙏", "تلفن": "📞", "افعال کاربردی": "🛠️", "حال کامل": "✅", "since و for": "⏳", "آینده با will": "🔮", "آینده با going to": "🚀", "مقایسه زمان‌ها": "⚖️", "دستگاه‌ها": "📱", "اینترنت": "🌐", "شبکه‌های اجتماعی": "📲", "هوش مصنوعی و آینده": "🤖", "مشکلات فنی": "🛠️", "آب‌وهوا": "🌦️", "طبیعت": "🌲", "آلودگی": "🏭", "حفاظت از طبیعت": "🌱", "گرمایش زمین": "🌡️", "شرطی نوع ۱ و ۲": "🔀", "مجهول": "📜", "افعال وجهی": "🎯", "جملهٔ موصولی": "🔗", "نقل قول و پرسش غیرمستقیم": "💬", "نظام آموزشی": "🎓", "جامعه": "👥", "رسانه و تبلیغات": "📺", "شهرنشینی": "🌆", "مزایا و معایب": "⚖️", "اقتصاد": "💹", "کسب‌وکار": "📊", "استخدام": "🧑‍💼", "مدیریت زمان": "⏱️", "کار از راه دور": "💻", "کلمات ربط": "🔗", "افعال عبارتی": "🧩", "مقایسه و شدت": "📶", "زمان‌ها و عبارت‌های زمانی": "🗓️", "افعال آکادمیک": "📚", "توصیف نمودار": "📊", "ابراز نظر در Writing": "✍️", "صفت‌های آکادمیک": "🎓", "سخنرانی و Speaking": "🎤", "ابراز نظر": "💬", "موافقت و مخالفت": "🤔", "مثال و توضیح": "💡", "ارتباط دادن ایده‌ها": "🔗", "نتیجه‌گیری": "🏁", "توصیف تجربه": "📖", "توالی رویدادها": "🪜", "گرامر: گذشته کامل": "🕰️", "احساس در خاطره": "💭", "قضاوت درباره تجربه": "⭐", "معرفی شغلی": "🧑‍💼", "سؤال‌های مصاحبه": "🎤", "وظایف و گزارش کار": "📋", "مذاکره و تصمیم": "🤝", "ایمیل کاری": "📧"};
+(function () {
+  const out = [];
+  DATA.forEach(u => {
+    if (u.reading) { out.push(u); return; }
+    u.L.forEach(l => {
+      const v = l.v || [], s = l.s || [], h = v.length > 4 ? Math.ceil(v.length / 2) : v.length, L = [];
+      L.push({ t: 'یادگیری ۱', v: v.slice(0, h), s: [] });
+      if (v.length > h) L.push({ t: 'یادگیری ۲', v: v.slice(h), s: [] });
+      if (s.length) L.push({ t: 'جمله‌ها', v: v, s: s, p: true });
+      out.push({ t: l.t, d: u.t, ic: TOPIC_IC[l.t] || u.ic, L });
+    });
+  });
+  DATA.splice(0, DATA.length, ...out);
+})();
+const LESSONS = [];
+DATA.forEach((u, ui) => {
+  u.L.forEach((l, li) => LESSONS.push({ id: LESSONS.length, ui, li, title: l.t, unit: u, v: l.v || [], s: l.s || [], r: l.r, rq: l.rq, practice: l.p }));
+  if (!u.reading) {
+    /* درس مرور واحد: ۸ واژه‌ی تصادفی از همه‌ی درس‌های همان واحد */
+    const all = u.L.flatMap(l => l.v), sents = u.L.flatMap(l => l.s);
+    const rnd = a => [...a].sort(() => Math.random() - 0.5);
+    /* درس شنیداری و گفتاری: واژه‌های همان واحد */
+    const uniq = [...new Map(all.map(x => [x[1], x])).values()];
+    if (uniq.length) {
+      LESSONS.push({ id: LESSONS.length, ui, li: u.L.length, title: 'شنیداری', unit: u, v: rnd(uniq).slice(0, 8), s: [], kind: 'listen', noPrior: true });
+      LESSONS.push({ id: LESSONS.length, ui, li: u.L.length + 1, title: 'گفتاری', unit: u, v: rnd(uniq).slice(0, 8), s: [], kind: 'speak', noPrior: true });
+    }
+    LESSONS.push({ id: LESSONS.length, ui, li: u.L.length, title: 'مرور واحد', unit: u, v: rnd(all).slice(0, 8), s: rnd(sents).slice(0, 2), review: true, noPrior: true });
+  }
+});
+
+/* ── وضعیت ── */
+const MAX_HEARTS = 50, HEART_GAP = 30 * 60 * 1000;
+let S = loadState(), CUR = null, Q = null, toastTimer;
+function loadState() {
+  const d = { ver: 2, xp: 0, hearts: MAX_HEARTS, streak: 0, last: '', done: [], hAt: Date.now(), wrong: [] };
+  try { const o = JSON.parse(localStorage.getItem('englishfa') || '{}'); if (o.ver !== 2) { delete o.done; delete o.wrong; delete o.hAt; } return Object.assign(d, o); } catch (e) { return d; }
+}
+function saveState() { try { localStorage.setItem('englishfa', JSON.stringify(S)); } catch (e) {} updateHeader(); }
+function updateHeader() {
+  set('xp', p(S.xp)); set('streak', p(S.streak)); set('heartCount', p(S.hearts)); set('quizHearts', p(S.hearts));
+}
+function regenHearts() {
+  const now = Date.now();
+  if (S.hearts >= MAX_HEARTS) S.hAt = now;
+  else {
+    const n = Math.floor((now - S.hAt) / HEART_GAP);
+    if (n > 0) { S.hearts = Math.min(MAX_HEARTS, S.hearts + n); S.hAt = S.hearts >= MAX_HEARTS ? now : S.hAt + n * HEART_GAP; }
+  }
+  saveState();
+}
+function loseHeart() {
+  if (S.hearts >= MAX_HEARTS) S.hAt = Date.now();
+  S.hearts = Math.max(0, S.hearts - 1); saveState();
+}
+const dayKey = (d = new Date()) => d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+function updateStreak() {
+  const t = new Date().toDateString(), y = new Date(Date.now() - 864e5).toDateString();
+  const k = dayKey(); S.days = S.days || []; if (!S.days.includes(k)) S.days = S.days.concat(k).slice(-60);
+  if (S.last === t) return;
+  S.streak = S.last === y ? S.streak + 1 : 1; S.last = t;
+}
+
+/* ── ابزار ── */
+const p = n => String(n).replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+const $ = id => document.getElementById(id);
+const set = (id, t) => { const e = $(id); if (e) e.textContent = t; };
+const shuffle = a => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = (a, n) => shuffle(a).slice(0, n);
+const norm = s => s.toLowerCase().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ').trim();
+function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === id));
+  window.scrollTo(0, 0);
+}
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+const hideFeedback = () => { $('feedback').className = 'feedback'; };
+
+/* ── خانه ── */
+function mistakeCard() {
+  const n = (S.wrong || []).length;
+  const d = el('div', 'mistake' + (n ? '' : ' off'));
+  d.innerHTML = `<i class="mic">${ICO.review}</i><div><h2>مرور اشتباهات</h2><p>${n ? p(n) + ' واژه در فهرست' : 'هنوز اشتباهی نداشته‌ای'}</p></div><button class="btn" ${n ? '' : 'disabled'}>${n ? 'شروع' : 'قفل'}</button>`;
+  if (n) d.querySelector('button').onclick = openMistakes;
+  return d;
+}
+function openMistakes() {
+  CUR = { id: -1, title: 'مرور واژه‌های اشتباه', unit: { ic: '' }, ui: -1, v: (S.wrong || []).slice(0, 10), s: [], noPrior: true, mistakes: true };
+  startLesson();
+}
+
+
+function wordsLearned() { return new Set(LESSONS.filter(l => S.done.includes(l.id)).flatMap(l => l.v.map(v => v[1]))).size; }
+function dashboard() {
+  const now = new Date(), h = now.getHours();
+  const g = h < 5 ? 'شب بخیر!' : h < 12 ? 'صبح بخیر!' : h < 17 ? 'ظهر بخیر!' : h < 20 ? 'عصر بخیر!' : 'شب بخیر!';
+  const names = ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'], sat = (now.getDay() + 1) % 7;
+  const days = S.days || [], today = days.includes(dayKey());
+  let wk = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now.getTime() + (i - sat) * 864e5), on = days.includes(dayKey(d)), t = i === sat;
+    wk += `<div class="day${t ? ' today' : ''}"><div class="hex${on ? ' on' : ''}${t ? ' today' : ''}"><span>${on ? '✓' : p(d.getDate())}</span></div>${names[i]}</div>`;
+  }
+  const doneN = S.done.length, wl = wordsLearned();
+  const B = [
+    ['🚩', 'گام اول', doneN >= 1], ['🤝', 'هم‌قدم', S.streak >= 3], ['🗓️', 'هفته‌ی کامل', S.streak >= 7],
+    ['📚', 'واژه‌ساز', wl >= 100], ['⚡', 'ستاره‌ی تجربه', S.xp >= 500]
+  ];
+  const got = B.filter(b => b[2]).length;
+  return `<div class="greet"><h1>${g}</h1><p>${doneN ? 'ادامه بده، همین‌طور عالی پیش می‌روی' : 'اولین درست را شروع کن'}</p></div>
+  <div class="dcard"><div class="week">${wk}</div>
+  <div class="streakNote ${today ? '' : 'todo'}" style="margin:0"><b>${today ? 'امروز تمرین کردی ✓' : 'امروز هنوز تمرین نکرده‌ای'}</b><span>${S.streak ? p(S.streak) + ' روز پشت‌سرهم' : 'با یک درس زنجیره را شروع کن'}</span></div></div>
+  <div class="grid2" style="margin-top:12px"><div class="dcard"><small>امتیاز کل</small><strong>${p(S.xp)}</strong></div>
+  <div class="dcard"><small>واژه‌های یادگرفته</small><strong style="color:var(--g)">${p(wl)}</strong><em>${p(doneN)} از ${p(LESSONS.length)} درس</em></div></div>
+  <div class="secH"><h3>نشان‌ها</h3><span>${p(got)} از ${p(B.length)}</span></div>
+  <div class="badges">${B.map(b => `<div class="bdg${b[2] ? '' : ' lock'}"><div class="hex"><span>${b[2] ? b[0] : '🔒'}</span></div>${b[1]}</div>`).join('')}</div>
+  <div class="pathH"><h3>مسیر یادگیری</h3></div>`;
+}
+const SV = d => `<svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">${d}</svg>`;
+const NIC = [
+  SV('<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/>'),
+  SV('<path d="M12 2 21 12 12 22 3 12z"/>'),
+  SV('<path d="M13 2 4 14h6l-1 8 9-12h-6z"/>'),
+  SV('<circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'),
+  SV('<path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/>'),
+  SV('<path d="M12 3 4 7v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7z"/>')
+];
+const NIC_LISTEN = SV('<path d="M6 9a6 6 0 0 1 12 0c0 3-2 4-2 7a3 3 0 0 1-6 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M10 16a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M3 10v2M21 10v2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>');
+const NIC_SPEAK = SV('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>');
+const NIC_READ = SV('<path d="M2 5c3-1.5 6-1.5 10 1v14c-4-2.5-7-2.5-10-1zM22 5c-3-1.5-6-1.5-10 1v14c4-2.5 7-2.5 10-1z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>');
+const NIC_REV = SV('<path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>');
+const OFF = [0, 60, 90, 60, 0, -60, -90, -60];
+const UCOL = ['purple', 'green', 'blue', 'orange'];
+function renderHome() {
+  regenHearts(); hideFeedback(); showScreen('home');
+  $('dash').innerHTML = dashboard();
+  const root = $('units'); root.innerHTML = '';
+  root.appendChild(mistakeCard());
+  DATA.forEach((unit, ui) => {
+    const ls = LESSONS.filter(x => x.ui === ui);
+    const n = ls.filter(x => S.done.includes(x.id)).length;
+    const b = el('div', 'unitBanner ' + UCOL[ui % 4]);
+    b.innerHTML = `<small>واحد ${p(ui + 1)} • ${p(n)} از ${p(ls.length)}</small><h2><i class="uic">${topicIcon(unit.t)}</i> ${unit.t}</h2>`;
+    root.appendChild(b);
+    const path = el('div', 'path');
+    let curSet = false;
+    ls.forEach((it, i) => {
+      const done = S.done.includes(it.id), open = it.id === 0 || S.done.includes(it.id - 1);
+      const isCur = open && !done && !curSet; if (isCur) curSet = true;
+      const w = el('div', 'nodeWrap');
+      w.style.transform = `translateX(${OFF[i % 8]}px)`;
+      const btn = el('button', 'node ' + (done ? 'done' : open ? '' : 'locked') + (isCur ? ' cur' : ''));
+      btn.innerHTML = `<span class="nic">${it.review ? NIC_REV : it.kind === 'listen' ? NIC_LISTEN : it.kind === 'speak' ? NIC_SPEAK : it.r ? NIC_READ : NIC[it.id % NIC.length]}</span>`;
+      btn.disabled = !open;
+      if (open) btn.onclick = () => openLesson(it.id);
+      btn.title = it.title;
+      w.append(btn); path.appendChild(w);
+    });
+    root.appendChild(path);
+  });
+}
+
+
+/* ── مرحله‌ی یادگیری: کارت تصویری واژه‌ها قبل از تمرین ── */
+let LI = 0;
+const EMO = {hello:'👋',goodbye:'👋',morning:'🌅',night:'🌙','good morning':'🌅','good night':'🌙',please:'🙏','thank you':'🙏',yes:'✅',no:'❌',sorry:'😔',water:'💧',tea:'🍵',coffee:'☕',bread:'🍞',apple:'🍎',milk:'🥛',rice:'🍚',egg:'🥚',fish:'🐟',chicken:'🍗',cat:'🐱',dog:'🐶',bird:'🐦',horse:'🐴',cow:'🐮',sun:'☀️',moon:'🌙',star:'⭐',tree:'🌳',flower:'🌸',rain:'🌧️',snow:'❄️',house:'🏠',door:'🚪',window:'🪟',bed:'🛏️',car:'🚗',bus:'🚌',train:'🚆',book:'📖',pen:'🖊️',phone:'📱',computer:'💻',school:'🏫',doctor:'🧑‍⚕️',teacher:'👩‍🏫',student:'🧑‍🎓',mother:'👩',father:'👨',sister:'👧',brother:'👦',baby:'👶',friend:'🧑‍🤝‍🧑',red:'🔴',blue:'🔵',green:'🟢',yellow:'🟡',black:'⚫',white:'⚪',happy:'😊',sad:'😢',big:'🐘',small:'🐜',hot:'🔥',cold:'🥶',one:'1️⃣',two:'2️⃣',three:'3️⃣',four:'4️⃣',five:'5️⃣',six:'6️⃣',seven:'7️⃣',eight:'8️⃣',nine:'9️⃣',ten:'🔟',hand:'✋',eye:'👁️',head:'🗣️',heart:'❤️',money:'💰',clock:'🕒',time:'⏰',shoe:'👟',hat:'🎒',ball:'⚽',music:'🎵',game:'🎮',beach:'🏖️',sea:'🌊',mountain:'⛰️',city:'🏙️',road:'🛣️',hospital:'🏥',shop:'🛍️',market:'🏪',restaurant:'🍽️',pizza:'🍕',cake:'🎂',orange:'🍊',banana:'🍌',grape:'🍇',tomato:'🍅',potato:'🥔',cheese:'🧀',soup:'🥣',juice:'🧃',sugar:'🍬',salt:'🧂',monday:'📅',sunday:'📅',spring:'🌷',summer:'☀️',autumn:'🍂',winter:'⛄'};
+function renderLearn() {
+  const v = CUR.v, n = v.length, btn = document.querySelector('#intro .row .btn:not(.secondary)');
+  document.querySelectorAll('#learnNext').forEach(x => x.remove());
+  if (CUR.review || CUR.practice || CUR.mistakes || CUR.r) {
+    $('introIcon').style.display = 'none'; $('introTitle').style.display = 'none';
+    $('introWords').innerHTML = CUR.v.map(([fa, en]) => `<div class="wordCard"><b class="en">${en}</b><span>${fa}</span></div>`).join('');
+    if (btn) btn.style.display = ''; return;
+  }
+  set('introDesc', `کارت ${p(LI + 1)} از ${p(n)} • اول یاد بگیر، بعد تمرین کن`); $('introIcon').style.display = 'none'; $('introTitle').style.display = 'none';
+  if (!v.length) { $('introWords').innerHTML = ''; if (btn) btn.style.display = ''; return; }
+  const [fa, en] = v[LI], emo = wordIcon(en);
+  $('introWords').innerHTML = `<div class="lcard"><div class="lemo">${emo}</div><b class="len" dir="ltr">${en}</b><span class="lfa">${fa}</span><button class="btn secondary lspk" onclick="speak('${en.replace(/'/g, "\\'")}')">🔊 تلفظ</button></div>
+  <div class="lprog">${v.map((_, i) => `<i class="${i <= LI ? 'on' : ''}"></i>`).join('')}</div>`;
+  if (btn) { btn.style.display = LI >= n - 1 ? '' : 'none'; }
+  const nx = document.createElement('button'); nx.className = 'btn'; nx.textContent = LI >= n - 1 ? 'واژه‌ها را یاد گرفتم' : 'بعدی';
+  nx.onclick = () => { if (LI >= n - 1) { startLesson(); } else { LI++; renderLearn(); } };
+  nx.id = 'learnNext';
+  const row = document.querySelector('#intro .row'); const old = document.getElementById('learnNext'); if (old) old.remove();
+  if (LI >= n - 1) { if (btn) btn.style.display = 'none'; }
+  row.insertBefore(nx, row.firstChild);
+  if (LI >= n - 1) nx.textContent = 'واژه‌ها را یاد گرفتم';
+}
+
+/* ── معرفی درس ── */
+function openLesson(id) {
+  CUR = LESSONS[id]; hideFeedback();
+  /* مرحله‌ی یادگیری فقط برای دو درس اول هر واحد؛ بقیه مستقیم به تمرین می‌روند */
+  if (!CUR.review && !CUR.r && !CUR.mistakes && CUR.li >= 2) { startLesson(); return; }
+  set('introIcon', CUR.unit.ic); $('introIcon').style.display = ''; set('introTitle', CUR.title); $('introTitle').style.display = '';
+  set('introDesc', CUR.r ? `واحد ${p(CUR.ui + 1)} • متن خواندنی + ۳ سؤال` : CUR.mistakes ? 'واژه‌های اشتباه قبلی' : `واحد ${p(CUR.ui + 1)} • ${p(CUR.v.length)} واژه`);
+  LI = 0; renderLearn();
+  showScreen('intro');
+}
+
+/* ── ساخت پرسش‌ها ── */
+function buildQuestions(lesson) {
+  if (lesson.r) return shuffle(lesson.rq.map(q => ({ type: 'mc', prompt: q.q, answer: q.o[q.a], options: shuffle(q.o), en: true, passage: lesson.r })));
+  const seen = LESSONS.filter(l => l.id <= lesson.id && !l.review || l.id === lesson.id);
+  const unitL = LESSONS.filter(l => l.ui === lesson.ui && !l.review);
+  const all = seen.flatMap(l => l.v).concat(lesson.v), qs = [];
+  const choices = (correct, idx) => {
+    const pool = lesson.v.concat(pick(all, 8)).map(x => x[idx]).filter((x, i, a) => x !== correct && a.indexOf(x) === i);
+    return shuffle([correct, ...pick(pool, 3)]);
+  };
+  const w = shuffle(lesson.v);
+  const W = (a, b) => Array.from({ length: b - a }, (_, i) => w[(a + i) % w.length]);
+  /* درس شنیداری: شنیدن و انتخاب/نوشتن ; درس گفتاری: تلفظ بلند */
+  if (lesson.kind === 'listen') {
+    lesson.v.forEach(([fa, en], i) => qs.push(i % 2
+      ? { type: 'type', label: '🔊 بشنو و بنویس', prompt: 'واژه‌ای که شنیدی را بنویس', answer: en, audio: en, src: [fa, en] }
+      : { type: 'mc', label: '🔊 به صدا گوش کن', prompt: 'کدام واژه را شنیدی؟', answer: en, options: choices(en, 1), en: true, audio: en, src: [fa, en] }));
+    return shuffle(qs);
+  }
+  if (lesson.kind === 'speak') {
+    lesson.v.forEach(([fa, en]) => qs.push({ type: 'speak', prompt: `این واژه را بلند بگو: «${fa}»`, answer: en, src: [fa, en] }));
+    return shuffle(qs);
+  }
+  W(0, 3).forEach(([fa, en]) => qs.push({ type: 'mc', prompt: `«${fa}» به انگلیسی چی می‌شه؟`, answer: en, options: choices(en, 1), en: true, src: [fa, en] }));
+  W(3, 5).forEach(([fa, en]) => qs.push({ type: 'mc', prompt: `معنی «${en}» چیست؟`, answer: fa, options: choices(fa, 0), en: false, src: [fa, en] }));
+  qs.push({ type: 'match', prompt: 'جفت‌های مرتبط را پیدا کن', pairs: pick(lesson.v, 4) });
+  W(5, 7).forEach(([fa, en]) => qs.push({ type: 'type', prompt: `«${fa}» را به انگلیسی بنویس`, answer: en, src: [fa, en] }));
+  /* شنیدن: جمله را بشنو و بنویس */
+  if (lesson.s[0]) qs.push({ type: 'type', prompt: '🔊 بشنو و بنویس', answer: lesson.s[0][1], audio: lesson.s[0][1], src: lesson.s[0] });
+  /* مرور: واژه‌های درس‌های قبلی (فاصله‌گذاری) */
+  const prior = lesson.noPrior ? [] : LESSONS.slice(0, lesson.id).flatMap(l => l.v);
+  if (prior.length) {
+    const rev = pick(prior, Math.min(3, prior.length));
+    rev.slice(0, 2).forEach(([fa, en]) => qs.push({ type: 'mc', prompt: `«${en}» به فارسی چیست؟`, answer: fa, options: choices(fa, 0), en: false, src: [fa, en] }));
+    rev.slice(2).forEach(([fa, en]) => qs.push({ type: 'type', prompt: `«${fa}» را به انگلیسی بنویس`, answer: en, src: [fa, en] }));
+  }
+  /* تنوع: شنیدن و انتخاب، جای‌خالی، انتخاب جمله */
+  const lw = lesson.v.map(x => x[1]);
+  const sv = (x, n) => shuffle([x, ...pick([...new Set(seen.concat(unitL.filter(l => l.id <= lesson.id || seen.length < 3)).flatMap(l => l.s || []).map(s => s[1]))].filter(s => s !== x), n)]);
+  const ve = pick(lesson.v, 1)[0][1];
+  qs.push({ type: 'mc', label: '🔊 به صدا گوش کن', prompt: 'کدام واژه را شنیدی؟', answer: ve, options: choices(ve, 1), en: true, audio: ve });
+  if (lesson.s[1]) {
+    const [sf, se] = lesson.s[1];
+    const cand = se.replace(/[.?!]$/, '').split(' ').filter(x => lw.includes(x.toLowerCase()) || x.length > 3);
+    if (cand.length) {
+      const target = cand[cand.length - 1], blank = se.replace(/[.?!]$/, '').split(' ').map(x => x === target ? '____' : x).join(' ');
+      const sent = se.replace(/[.?!,]/g, '').split(' ');
+      const ok = x => x && !x.includes(' ') && x.toLowerCase() !== target.toLowerCase() && !sent.includes(x);
+      const unitW = LESSONS.filter(l => l.ui === lesson.ui && (lesson.review || l.id <= lesson.id)).flatMap(l => l.v.map(v => v[1]));
+      const near = [...new Set([...lw, ...unitW, ...(unitW.length < 6 ? all.map(v => v[1]) : [])].filter(ok))];
+      const opts = shuffle([target, ...pick(near, 3)]);
+      if (opts.length >= 3) qs.push({ type: 'mc', label: '✏️ جای خالی را پر کن', prompt: `«${blank}»`, answer: target, options: opts, en: true, src: [sf, se] });
+    }
+    qs.push({ type: 'mc', label: '📝 جمله‌ی درست را انتخاب کن', prompt: `کدام جمله معنی «${sf}» را می‌دهد؟`, answer: se, options: sv(se, 3), en: true, src: [sf, se] });
+  }
+  const others = seen.concat(lesson.review ? unitL : []).flatMap(l => l.s || []).flatMap(s => s[1].replace(/[.?!,]/g, '').split(' '));
+  lesson.s.forEach(([fa, en]) => {
+    const words = en.replace(/[.?!]$/, '').split(' ');
+    const extra = pick(others.filter(x => !words.includes(x)), 2);
+    qs.push({ type: 'word', prompt: `ترجمه کن: «${fa}»`, answer: words, bank: shuffle([...words, ...extra]), src: [fa, en] });
+  });
+  /* تمرین تلفظ: فقط در واحدهای مکالمه */
+  if (/مکالمه/.test(lesson.unit.t) && !lesson.review && !lesson.mistakes) {
+    lesson.s.forEach(([fa, en]) => qs.push({ type: 'speak', prompt: `این جمله را بلند بگو: «${fa}»`, answer: en, src: [fa, en] }));
+    pick(lesson.v, 2).forEach(([fa, en]) => qs.push({ type: 'speak', prompt: `این واژه را بلند بگو: «${fa}»`, answer: en, src: [fa, en] }));
+  }
+  return shuffle(qs);
+}
+
+/* ── اجرای درس ── */
+function startLesson() {
+  regenHearts();
+  if (S.hearts <= 0) { toast('جان‌هایت تمام شده! نیم ساعت دیگر یک جان برمی‌گردد.'); return; }
+  const queue = buildQuestions(CUR);
+  Q = { queue, total: queue.length, passed: 0, attempts: 0, right: 0, start: Date.now(), busy: false };
+  showScreen('quiz'); renderQuestion();
+}
+function confirmExit() {
+  askConfirm('از درس خارج می‌شوی؟ پیشرفت این درس از دست می‌رود.', 'خروج', () => { Q = null; renderHome(); });
+}
+function renderQuestion() {
+  hideFeedback();
+  const q = Q.queue[0]; Q.cur = q; Q.ans = null; Q.locked = false;
+  $('progressFill').style.width = (Q.passed / Q.total * 100) + '%';
+  { const pr = $('prompt'); pr.textContent = ''; const re = /[A-Za-z_][A-Za-z_' .,!?-]*[A-Za-z_.!?]|[A-Za-z_]/g; let last = 0, m;
+    while ((m = re.exec(q.prompt))) { if (m.index > last) pr.append(q.prompt.slice(last, m.index)); const s = document.createElement('span'); s.dir = 'ltr'; s.style.unicodeBidi = 'isolate'; s.textContent = m[0]; pr.append(s); last = m.index + m[0].length; }
+    if (last < q.prompt.length) pr.append(q.prompt.slice(last)); }
+  set('qType', q.label || { mc: 'گزینه‌ی درست را انتخاب کن', type: 'تایپ کن', word: 'جمله را بچین', match: 'جفت‌یابی' }[q.type]);
+  const area = $('questionArea'); area.innerHTML = '';
+  const cb = $('checkBtn'); cb.disabled = true; cb.style.display = q.type === 'match' ? 'none' : '';
+  updateHeader();
+  ({ mc: renderMC, type: renderType, word: renderWord, match: renderMatch, speak: renderSpeak })[q.type](q, area);
+}
+function ready(v) { $('checkBtn').disabled = !v; }
+
+function renderMC(q, area) {
+  if (q.passage) area.appendChild(el('div', 'passage', q.passage));
+  if (q.audio) {
+    const b = el('button', 'btn secondary', '🔊 پخش دوباره');
+    b.onclick = () => speak(q.audio);
+    area.appendChild(b); setTimeout(() => speak(q.audio), 300);
+  }
+  const box = el('div', 'options');
+  q.options.forEach(o => {
+    const b = el('button', 'choice' + (q.en ? ' en' : ''), o);
+    b.onclick = () => {
+      if (Q.locked) return;
+      box.querySelectorAll('.choice').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected'); Q.ans = o; ready(true);
+    };
+    box.appendChild(b);
+  });
+  area.appendChild(box);
+}
+function renderType(q, area) {
+  const i = el('input', 'textIn'); i.placeholder = 'English...'; i.autocomplete = 'off'; i.autocapitalize = 'off'; i.spellcheck = false;
+  i.oninput = () => { Q.ans = i.value; ready(i.value.trim().length > 0); };
+  if (q.audio) {
+    const b = el('button', 'btn secondary', '🔊 پخش دوباره');
+    b.onclick = () => speak(q.audio);
+    area.appendChild(b); setTimeout(() => speak(q.audio), 300);
+  }
+  area.appendChild(i); setTimeout(() => i.focus(), 50);
+}
+/* تمرین تلفظ: کاربر بلند می‌گوید؛ با تشخیص گفتار مقایسه می‌شود */
+function renderSpeak(q, area) {
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const big = el('div', 'speakText', q.answer); big.dir = 'ltr';
+  const out = el('div', 'speakOut', Rec ? 'روی میکروفون بزن و بگو' : 'تشخیص گفتار در این مرورگر پشتیبانی نمی‌شود');
+  const row = el('div', 'speakRow');
+  const listen = el('button', 'btn secondary', '🔊 نمونه را بشنو');
+  listen.onclick = () => speak(q.answer);
+  const mic = el('button', 'btn', '🎤 بگو');
+  row.append(listen, mic);
+  area.append(big, out, row);
+  if (!Rec) { mic.disabled = true; return; }
+  let timer = null, got = false;
+  const finish = (r, said) => {
+    if (got) return; got = true; clearTimeout(timer);
+    try { r.stop(); } catch (_) {}
+    mic.disabled = false;
+    Q.ans = said; ready(true); out.textContent = 'گفتی: ' + said;
+  };
+  mic.onclick = () => {
+    if (Q.locked || mic.disabled) return;
+    got = false;
+    const r = new Rec();
+    r.lang = 'en-US'; r.interimResults = true; r.maxAlternatives = 1; r.continuous = true;
+    mic.disabled = true; out.textContent = 'در حال گوش دادن... واژه را بگو';
+    r.onresult = e => {
+      let text = '', final = false;
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        text += e.results[i][0].transcript;
+        if (e.results[i].isFinal) final = true;
+      }
+      if (final && text.trim()) finish(r, text.trim());
+    };
+    r.onerror = e => {
+      clearTimeout(timer); mic.disabled = false;
+      const code = e && e.error;
+      if (code === 'not-allowed' || code === 'service-not-allowed') {
+        out.textContent = 'اجازه‌ی میکروفون داده نشده. در تنظیمات مرورگر به سایت اجازه‌ی میکروفون بده.';
+      } else if (code === 'network') {
+        out.textContent = 'تشخیص گفتار به اینترنت نیاز دارد؛ اتصال را بررسی کن یا صفحه را در Chrome باز کن.';
+      } else if (code === 'audio-capture') {
+        out.textContent = 'میکروفون پیدا نشد.';
+      } else if (code === 'no-speech') {
+        out.textContent = 'صدایی شنیده نشد؛ دوباره بزن و واضح بگو.';
+      } else if (code !== 'aborted') {
+        out.textContent = 'تشخیص گفتار خطا داد (' + code + '). دوباره بزن.';
+      }
+    };
+    r.onend = () => { clearTimeout(timer); if (!got) { mic.disabled = false; if (out.textContent.indexOf('گوش') !== -1) out.textContent = 'صدایی شنیده نشد؛ دوباره بزن.'; } };
+    timer = setTimeout(() => { if (!got) { try { r.stop(); } catch (_) {} } }, 8000);
+    try { r.start(); } catch (_) { mic.disabled = false; out.textContent = 'شروع میکروفون ممکن نشد؛ دوباره بزن.'; }
+  };
+}
+function renderWord(q, area) {
+  Q.slots = [];
+  const slots = el('div', 'wordSlots'), pool = el('div', 'wordPool');
+  const draw = () => {
+    slots.innerHTML = '';
+    Q.slots.forEach((t, k) => {
+      const c = el('button', 'chip en', t.w);
+      c.onclick = () => { if (Q.locked) return; Q.slots.splice(k, 1); draw(); };
+      slots.appendChild(c);
+    });
+    pool.querySelectorAll('.chip').forEach((c, k) => c.classList.toggle('used', Q.slots.some(s => s.k === k)));
+    Q.ans = Q.slots.map(s => s.w); ready(Q.slots.length > 0);
+  };
+  q.bank.forEach((w, k) => {
+    const c = el('button', 'chip en', w);
+    c.onclick = () => { if (Q.locked || Q.slots.some(s => s.k === k)) return; Q.slots.push({ w, k }); draw(); };
+    pool.appendChild(c);
+  });
+  area.append(slots, pool);
+}
+function renderMatch(q, area) {
+  const wrap = el('div', 'matchWrap'), L = el('div', 'matchCol'), R = el('div', 'matchCol');
+  let selL = null, selR = null, left = q.pairs.length, mistakes = 0;
+  const test = () => {
+    if (!selL || !selR) return;
+    const a = selL, b = selR; selL = selR = null;
+    if (a.dataset.k === b.dataset.k) {
+      [a, b].forEach(x => { x.classList.remove('selected'); x.classList.add('matched'); x.disabled = true; });
+      if (--left === 0) { Q.right += mistakes ? 0 : 1; finish(true, mistakes ? 'تمام شد، اما با چند اشتباه.' : 'همه‌ی جفت‌ها درست بود!', '', true); }
+    } else {
+      mistakes++; loseHeart(); [a, b].forEach(x => { const pr = q.pairs.find(pp => pp[1] === x.dataset.k); if (pr) trackWord(pr, false); });
+      [a, b].forEach(x => { x.classList.remove('selected'); x.classList.add('bad'); });
+      setTimeout(() => [a, b].forEach(x => x.classList.remove('bad')), 450);
+      if (S.hearts <= 0) failLesson();
+    }
+  };
+  const mk = (txt, k, isEn, side) => {
+    const b = el('button', 'pair' + (isEn ? ' en' : ''), txt); b.dataset.k = k;
+    b.onclick = () => {
+      if (Q.locked || b.disabled) return;
+      const col = side === 'L' ? L : R;
+      col.querySelectorAll('.selected').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      if (side === 'L') selL = b; else selR = b;
+      test();
+    };
+    return b;
+  };
+  shuffle(q.pairs).forEach(([fa, en]) => L.appendChild(mk(fa, en, false, 'L')));
+  shuffle(q.pairs).forEach(([fa, en]) => R.appendChild(mk(en, en, true, 'R')));
+  wrap.append(L, R); area.appendChild(wrap);
+}
+
+/* ── بررسی پاسخ ── */
+function checkAnswer() {
+  if (!Q || Q.locked) return;
+  const q = Q.cur; let ok, shown;
+  if (q.type === 'mc') { ok = Q.ans === q.answer; shown = q.answer; }
+  else if (q.type === 'type') { ok = norm(Q.ans) === norm(q.answer); shown = q.answer; }
+  else if (q.type === 'speak') { ok = !!Q.ans && norm(Q.ans) === norm(q.answer); shown = q.answer; }
+  else { ok = Q.ans.join(' ') === q.answer.join(' '); shown = q.answer.join(' '); }
+  Q.attempts++;
+  if (ok) Q.right++;
+  if (q.src) trackWord(q.src, ok);
+  if (q.type === 'mc') document.querySelectorAll('.choice').forEach(b => {
+    if (b.textContent === q.answer) b.classList.add('good');
+    else if (b.classList.contains('selected')) b.classList.add('bad');
+  });
+  const praise = ['آفرین!', 'عالی بود!', 'درسته!', 'بسیار خوب!'];
+  finish(ok, ok ? praise[Math.floor(Math.random() * praise.length)] : 'درست نبود', ok ? '' : 'پاسخ درست: ' + shown, false);
+}
+/* فهرست واژه‌های اشتباه: اشتباه اضافه، درست حذف */
+function trackWord([fa, en], ok) {
+  S.wrong = S.wrong || [];
+  const i = S.wrong.findIndex(x => x[0] === fa && x[1] === en);
+  if (ok && i >= 0 && CUR && CUR.mistakes) S.wrong.splice(i, 1);
+  if (!ok && i < 0) S.wrong.push([fa, en]);
+  if (S.wrong.length > 40) S.wrong.shift();
+  saveState();
+}
+function speak(t) {
+  if (!('speechSynthesis' in window)) return toast('مرورگر پخش صدا را پشتیبانی نمی‌کند.');
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(t); u.lang = 'en-US'; u.rate = 0.85; speechSynthesis.speak(u);
+}
+function finish(ok, title, ans, isMatch) {
+  Q.locked = true; $('checkBtn').disabled = true;
+  if (!ok) { loseHeart(); }
+  if (isMatch) Q.attempts++;
+  const fb = $('feedback'); fb.className = 'feedback show ' + (ok ? 'correct' : 'wrong');
+  set('fbText', (ok ? '✅ ' : '❌ ') + title);
+  const a = $('fbAns'); a.textContent = ans; a.className = 'fbAns' + (/[A-Za-z]/.test(ans.replace('پاسخ درست:', '')) ? '' : '');
+  const q = Q.queue.shift();
+  if (ok) Q.passed++; else Q.queue.push(q); // اشتباه‌ها دوباره پرسیده می‌شوند
+  if (!ok && S.hearts <= 0) { Q.dead = true; }
+  $('progressFill').style.width = (Q.passed / Q.total * 100) + '%';
+}
+function nextQuestion() {
+  if (!Q) return;
+  if (Q.dead) return failLesson();
+  if (Q.queue.length === 0) return completeLesson();
+  renderQuestion();
+}
+
+/* ── پایان درس ── */
+function failLesson() {
+  hideFeedback(); Q = null;
+  $('resultIcon').textContent = '💔'; set('resultTitle', 'جان‌هایت تمام شد');
+  set('resultSub', 'نیم ساعت دیگر یک جان برمی‌گردد. در این فاصله واژه‌ها را مرور کن!');
+  set('earned', '+۰'); set('accuracy', '—'); set('elapsed', '—');
+  showScreen('result');
+}
+function completeLesson() {
+  hideFeedback();
+  const first = CUR.id >= 0 && !S.done.includes(CUR.id);
+  const acc = Math.round(Q.right / Math.max(1, Q.attempts) * 100);
+  const xp = 10 + Q.right * 2 + (acc === 100 ? 5 : 0) + (first ? 10 : 0);
+  S.xp += xp; if (first) S.done.push(CUR.id); if (!CUR.mistakes) updateStreak(); saveState();
+  const sec = Math.round((Date.now() - Q.start) / 1000);
+  $('resultIcon').textContent = acc >= 90 ? '🏆' : acc >= 70 ? '🎉' : '👍';
+  set('resultTitle', acc >= 90 ? 'فوق‌العاده بود!' : acc >= 70 ? 'آفرین!' : 'درس کامل شد');
+  set('resultSub', first && CUR.id + 1 < LESSONS.length ? 'درس بعدی باز شد!' : CUR.id + 1 >= LESSONS.length && first ? 'تبریک! همه‌ی درس‌ها را تمام کردی 🎓' : 'مرورِ خوبی بود.');
+  set('earned', '+' + p(xp)); set('accuracy', p(acc) + '٪');
+  set('elapsed', p(Math.floor(sec / 60)) + ':' + p(String(sec % 60).padStart(2, '0')));
+  Q = null; showScreen('result');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !Q) return;
+  if ($('feedback').classList.contains('show')) nextQuestion();
+  else if (!$('checkBtn').disabled && $('checkBtn').style.display !== 'none') checkAnswer();
+});
+function openProfile() {
+  $('profStats').innerHTML = [['امتیاز', S.xp], ['زنجیره', S.streak], ['درس‌های انجام‌شده', S.done.length], ['واژه‌های یادگرفته', wordsLearned()], ['اشتباهات ذخیره‌شده', (S.wrong || []).length]]
+    .map(r => `<div class="prow"><span>${r[0]}</span><b>${p(r[1])}</b></div>`).join('');
+  showScreen('profile');
+}
+$('profBtn').addEventListener('click', openProfile);
+$('profBack').addEventListener('click', () => showScreen('home'));
+function doReset() {
+  try { localStorage.removeItem('englishfa'); } catch (e) {}
+  S = loadState(); saveState(); renderHome(); showScreen('home'); toast('اطلاعات پاک شد');
+}
+$('resetBtn').addEventListener('click', () => {
+  askConfirm('همه‌ی پیشرفت پاک شود؟ این کار برگشت‌پذیر نیست.', 'پاک کردن', doReset);
+});
+renderHome();
+/* پنجره‌ی تأیید هماهنگ با ظاهر سایت (جای confirm مرورگر) */
+function askConfirm(msg, okText, onOk) {
+  const bg = el('div', 'cfBg');
+  const box = el('div', 'cfBox');
+  const t = el('p', 'cfMsg', msg);
+  const row = el('div', 'cfRow');
+  const no = el('button', 'btn secondary', 'انصراف');
+  const yes = el('button', 'btn danger', okText);
+  const close = () => bg.remove();
+  no.onclick = close;
+  yes.onclick = () => { close(); onOk(); };
+  row.append(no, yes); box.append(t, row); bg.appendChild(box);
+  bg.addEventListener('click', e => { if (e.target === bg) close(); });
+  document.body.appendChild(bg);
+}
+
+</script>
+</body>
+</html>
